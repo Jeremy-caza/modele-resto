@@ -1,105 +1,173 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Boucherie Codega</title>
-<link rel="stylesheet" href="style.css" />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Open+Sans&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Belvédère du Domaine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- HEADER / MENU STICKY -->
+    <header id="top">
+        <div class="container flex between">
+            <div class="logo">
+                <a href="#accueil">
+  <img src="imagesdomaine/logo.jpg" alt="Logo Le Belvédère du Domaine" class="logo-img">
+</a>
+            </div>
+            <nav id="nav">
+                <ul class="menu">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#histoire">Notre Histoire</a></li>
+                    <li><a href="#espaces">Les Espaces</a></li>
+                    <li><a href="#evenements">Événements</a></li>
+                    <li><a href="#galerie">Galerie</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <span class="burger" id="burger">&#9776;</span>
+            </nav>
+        </div>
+    </header>
 
-<!-- HEADER -->
-<header>
-<div class="container">
-<div class="logo">
-<img src="images/logo.png" alt="Logo Boucherie Codega">
-</div>
-<nav>
-<ul>
-<li><a href="#accueil">Accueil</a></li>
-<li><a href="#histoire">Notre Histoire</a></li>
-<li><a href="#produits">Nos Produits</a></li>
-<li><a href="#plats">Plats Cuisinés</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</nav>
-</div>
-</header>
+    <!-- ACCUEIL -->
+    <section id="accueil" class="hero fade-in">
+        <div class="hero-text">
+            <h1>Le Belvédère du Domaine</h1>
+            <p>Un domaine exceptionnel pour des événements exceptionnels</p>
+            <a href="#histoire" class="btn">Découvrir</a>
+        </div>
+    </section>
 
-<!-- BANNIÈRE PRINCIPALE -->
-<section class="banner" id="accueil">
-<div class="banner-text">
-<h1>Boucherie - Charcuterie Codega</h1>
-<p>Depuis 1993, la tradition du goût et des produits de qualité</p>
-</div>
-</section>
+    <!-- NOTRE HISTOIRE -->
+    <section id="histoire" class="story fade-in">
+        <div class="container">
+            <h2>Notre Histoire</h2>
+            <p>Un lieu d’exception niché au cœur de la nature, dans un cadre empreint de charme et de sérénité. Cette ancienne ferme, magnifiquement restaurée, avec une splendide salle de réception ainsi qu’une salle de séminaire, s’étend sur un parc privé de 80 hectares, mêlant coteaux pittoresques, forêts de chênes majestueux et prairies verdoyantes à perte de vue. Avec son toit élégant et ses pierres restaurées, la bâtisse offre un écrin authentique et raffiné pour vos célébrations.
+Depuis le domaine, une vue panoramique sublime se déploie, embrassant les vallées jusqu’aux sommets des Pyrénées, avec le mythique Pic du Midi qui dessine l’horizon, s’étendant de la Haute-Garonne aux Pyrénées-Atlantiques. Ce décor naturel enchanteur et cette ambiance unique feront de votre évènement un moment inoubliable, empreint de la beauté des lieux et de l’atmosphère paisible du Sud-Ouest. 
+            </p>
+        </div>
+    </section>
 
-  <!-- SECTION HISTOIRE -->
-<section class="histoire" id="histoire">
-<div class="container">
-<h2>Notre Histoire</h2>
-<div class="histoire-content">
-<img src="images/image-histoire.jpg" alt="Notre histoire">
-<p>
-Depuis plus de 30 ans, la Boucherie Codega vous propose des viandes sélectionnées avec soin, issues de producteurs locaux. La tradition artisanale et le respect des produits sont au cœur de notre métier.
-</p>
-</div>
-</div>
-</section>
+    <!-- LES ESPACES -->
+    <section id="espaces" class="espaces fade-in">
+        <div class="container">
+            <h2>Les Espaces</h2>
+            <div class="grid-espaces">
+                <article class="espace">
+                    <img src="imagesdomaine/salle.jpg" alt="Salle de réception">
+                    <h3>Salle de réception</h3>
+                    <p>"Située dans le prolongement naturel de la maison, la salle de réception allie charme authentique et confort moderne. Spacieuse et lumineuse, elle accueille mariages, fêtes familiales ou événements professionnels dans une atmosphère chaleureuse. Une pergola couverte attenante prolonge l’espace vers l’extérieur, idéale pour les cocktails ou les moments conviviaux en plein air."</p>
+                </article>
+                <article class="espace">
+                    <img src="imagesdomaines/bergerie.jpg" alt="Bergerie">
+                    <h3>Bergerie</h3>
+                    <p>"Avec sa terrasse panoramique face aux sommets pyrénéens, la bergerie offre un cadre idyllique pour vos apéritifs et repas intimistes. Son espace bar au rez-de-chaussée, complété par une salle de bain, en fait un lieu parfait pour partager des moments conviviaux dans un décor naturel et apaisant."</p>
+                </article>
+                <article class="espace">
+                    <img src="imagesdomaines/ext.jpg" alt="Jardin et terrasse">
+                    <h3>Extérieur & Jardin</h3>
+                    <p>"À l’extérieur, tout invite à la détente et à la convivialité. Deux terrasses aménagées, un terrain de pétanque, des coins salons sous les arbres, un vaste jardin fleuri… le tout ouvert sur une vue imprenable sur la chaîne des Pyrénées. Entre champs, plantes, mobilier d’extérieur et accès pratique en voiture avec parking, chaque espace a été pensé pour savourer pleinement le cadre naturel et apaisant du domaine."
+                    </p>
+                </article>
+                <article class="espace">
+                    <img src="imagesdomaine/chambre.jpg" alt="Maison et chambres">
+                    <h3>Maison & Chambres</h3>
+                    <p>"La maison abrite plusieurs chambres, chacune pensée avec soin pour offrir confort, charme et tranquillité. Parmi elles, une suite d’exception, confidentielle, que nous dévoilons rarement, mais dont la magie ne laisse personne indifférent. Ici, chaque détail a été choisi pour créer une atmosphère chaleureuse et hors du temps. Si vous êtes curieux… on vous en dit plus, mais seulement si vous êtes prêts à tomber sous le charme."</p>
+                </article>
+            </div>
+        </div>
+    </section>
 
-<!-- SECTION PRODUITS -->
-<section class="produits" id="produits">
-<div class="container">
-<h2>Nos Produits</h2>
-<div class="produits-grid">
-<div class="produit">
-<img src="images/image-charcuterie.jpg" alt="Charcuterie">
-<h3>Charcuterie Artisanale</h3>
-<p>Des recettes traditionnelles, sans additifs, préparées maison.</p>
-</div>
-<div class="produit">
-<img src="images/image-boucherie.jpg" alt="Viandes">
-<h3>Viandes de Qualité</h3>
-<p>Bœuf, agneau, veau, porc… sélectionnés en circuit court.</p>
-</div>
-<div class="produit">
-<img src="images/image-epicerie.jpg" alt="Épicerie">
-<h3>Épicerie Locale</h3>
-<p>Confitures, miels, bières et produits de la région.</p>
-</div>
-</div>
-</div>
-</section>
+    <!-- MARIAGES & ÉVÉNEMENTS -->
+    <section id="evenements" class="evenements fade-in">
+        <div class="container">
+            <h2>Mariages & Événements</h2>
+            <p>"Mariages intimistes ou célébrations grandioses, séminaires professionnels, concerts en plein air, retraites bien-être ou même tournages... Le domaine s’adapte à toutes vos envies. Grâce à ses différents espaces, à son cadre naturel inspirant et à ses installations pensées pour recevoir, il devient le lieu idéal pour imaginer, créer, partager. Que ce soit pour vivre un moment fort entre proches ou donner vie à un projet ambitieux, ici tout est possible. Il ne reste qu’à laisser parler votre imagination."
+            </p>
+            <ul class="liste-evenements">
+                <li>Mariages</li>
+                <li>Séminaires</li>
+                <li>Concerts</li>
+                <li>Tournages vidéo</li>
+                <li>Séjours bien-être</li>
+                <!-- Autres événements -->
+            </ul>
+        </div>
+    </section>
 
-<!-- SECTION PLATS CUISINÉS -->
-<section class="plats" id="plats">
-<div class="container">
-<h2>Plats Cuisinés</h2>
-<div class="plats-content">
-<img src="images/image-plats-cuisines.jpg" alt="Plats cuisinés">
-<p>Découvrez chaque semaine notre sélection de plats cuisinés faits maison, à emporter pour vos déjeuners ou dîners gourmands.</p>
-</div>
-</div>
-</section>
+    <!-- GALERIE -->
+    <section id="galerie" class="galerie fade-in">
+        <div class="container">
+            <h2>Galerie</h2>
+            <div class="grid-galerie">
+                <!-- Ajoutez vos images ici -->
+                <img src="imagesdomaine/photo1.jpg" alt="Photo 1">
+                <img src="imagesdomaine/photo2.jpg" alt="Photo 2">
+                <img src="imagesdomaine/photo3.jpg" alt="Photo 3">
+                <img src="imagesdomaine/photo4.jpg" alt="Photo 4">
+                <img src="imagesdomaine/photo5.jpg" alt="Photo 5">
+                <img src="imagesdomaine/photo6.jpg" alt="Photo 6">
+            </div>
+        </div>
+    </section>
 
-<!-- SECTION CONTACT -->
-<section class="contact" id="contact">
-<div class="container">
-<h2>Contact & Horaires</h2>
-<p>📍 12 Avenue du Marché, 12345 Ville</p>
-<p>📞 05 62 00 00 00</p>
-<p>🕒 Du mardi au samedi : 8h – 12h30 / 15h30 – 19h</p>
-<p>📩 contact@boucherie-codega.fr</p>
-</div>
-</section>
+    <!-- AVIS CLIENTS -->
+    <section id="avis" class="avis fade-in">
+        <div class="container">
+            <h2>Avis clients</h2>
+            <div class="avis-list">
+                <div class="testimonial">
+                    <p>Un lieu hors du commun, notre mariage fut un pur bonheur, ses espaces extérieurs sont justes sublimes, l’intérieur incroyable… les chambres avec la location de linge de lit sont vraiment un plus quand les gens viennent de loin , cela permet de vraiment profiter du week-end tous ensemble. Un grand merci aux propriétaires très à l’écoute. On le conseille les yeux fermés.</p>
+                    <span>Amandine VIGNY</span>
+                </div>
+                <div class="testimonial">
+                    <p>Exceptionnel. Cadre excellent, parfait pour un moment de détente et d’apaisement.</p>
+                    <span>Louane LAFLEUR</span>
+                </div>
+                <div class="testimonial">
+                    <p>Un lieu absolument magnifique pour notre mariage ! Propriétaires à l’écoute. Nos invités ont été conquis par la beauté du paysage et l’atmosphère chaleureuse qui s’en dégage. Nous ne pouvions rêver mieux.</p>
+                    <span>Pierre MATA</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- FOOTER -->
-<footer>
-<div class="container">
-<p>&copy; 2025 Boucherie - Charcuterie Codega | Site vitrine inspiré par www.boucherie-charcuterie-codega.fr</p>
-</div>
-</footer>
+    <!-- ACCÈS & CONTACT -->
+    <section id="contact" class="contact fade-in">
+        <div class="container">
+            <h2>Accès & Contact</h2>
+            <div class="contact-grid">
+                <div class="info-contact">
+                    <p>2 Chem. de la Lande, 65190 Tournay</p>
+                    <p>06 37 21 04 00</p>
+                    <p>belevederedudomaine@gmail.com</p>
+                </div>
+                <form><!-- Formulaire de contact -->
+                    <input type="text" placeholder="Nom" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea placeholder="Votre message" required></textarea>
+                    <button type="submit" class="btn">Envoyer</button>
+                </form>
+            </div>
+            <!-- Carte Google Maps intégrée -->
+            <div class="map">
+                <iframe src="https://www.google.com/maps/place/Le+Belv%C3%A9d%C3%A8re+du+Domaine/@43.1900669,0.2845093,17z/data=!3m1!4b1!4m6!3m5!1s0x12a9cba66648e755:0x7f5bcb7256ee3d29!8m2!3d43.1900669!4d0.2845093!16s%2Fg%2F11h6s07bgq?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D" loading="lazy" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
 
+    <footer>
+        <div class="container">
+            <p><!-- Mentions légales --></p>
+            <div class="socials">
+                <a href="https://www.facebook.com/people/Le-Belv%C3%A9d%C3%A8re-du-Domaine/61555397682972/">Facebook</a>
+                <a href="https://www.instagram.com/belvederedudomaine/">Instagram</a>
+                <!-- Autres réseaux -->
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

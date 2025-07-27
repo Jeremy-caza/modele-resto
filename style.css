@@ -57,7 +57,7 @@ header {
     cursor: pointer;
 }
 nav {
-    position: relative;
+    margin-left: auto;
 }
 .nav-links {
     list-style: none;

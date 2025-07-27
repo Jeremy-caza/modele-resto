@@ -1,31 +1,41 @@
-// ----- MENU BURGER -----
-const burger = document.getElementById('burger');
-const menu = document.querySelector('.menu');
-
-burger.addEventListener('click', () => {
-  menu.classList.toggle('open');
-});
-
-// ----- SCROLL FLUIDE -----
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', function(e) {
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', e => {
     e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
+    const target = document.querySelector(anchor.getAttribute('href'));
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
-      menu.classList.remove('open');
     }
   });
 });
 
-// ----- ANIMATION FADE-IN -----
+// Sticky header (class handled by CSS)
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('header');
+  header.classList.toggle('sticky', window.scrollY > 50);
+});
+
+// Menu toggle for mobile
+const menuToggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('header nav');
+if (menuToggle && nav) {
+  menuToggle.addEventListener('click', () => {
+    nav.classList.toggle('open');
+  });
+}
+
+// Fade-in animation on scroll
+const faders = document.querySelectorAll('.fade-in');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
+      entry.target.classList.add('show');
       observer.unobserve(entry.target);
     }
   });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+faders.forEach(el => observer.observe(el));
+
+// Footer year
+document.getElementById('year').textContent = new Date().getFullYear();

@@ -150,6 +150,10 @@ section {
 .about p {
     max-width: 800px;
     margin: auto;
+    line-height: 1.8;
+    padding: 20px 0;
+    font-size: 1.1rem;
+    font-family: 'Georgia', serif;
 }
 .espaces .space-grid {
     display: grid;
@@ -332,4 +336,10 @@ body {
   75%  { transform: translateX(-300%); }
   95%  { transform: translateX(-300%); }
   100% { transform: translateX(-400%); }
+}
+
+.about p,
+.space p,
+.events p {
+    text-align: justify;
 }

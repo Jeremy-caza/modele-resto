@@ -56,8 +56,16 @@ const nextBtn = document.querySelector('.carousel-btn.next');
 let currentIndex = 0;
 
 function updateCarousel() {
-  const cardWidth = document.querySelector('.avis-card').offsetWidth + 20;
-  track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+  const container = document.querySelector('.carousel-track-container');
+  const card = document.querySelector('.avis-card');
+  const cardWidth = card.offsetWidth + 20;
+  const maxTranslate = track.scrollWidth - container.offsetWidth;
+  let translate = currentIndex * cardWidth;
+  if (translate > maxTranslate) {
+    currentIndex = Math.floor(maxTranslate / cardWidth);
+    translate = currentIndex * cardWidth;
+  }
+  track.style.transform = `translateX(-${translate}px)`;
 }
 
 nextBtn.addEventListener('click', () => {

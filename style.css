@@ -42,9 +42,12 @@ header {
     align-items: center;
 }
 .logo img {
-    height: 60px; /* ajuste selon la taille de ton logo */
+    height: 60px;
     width: auto;
     display: block;
+}
+.logo {
+    margin-left: 10px;
 }
 .menu-toggle {
     display: none;

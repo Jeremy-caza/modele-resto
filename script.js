@@ -24,6 +24,16 @@ if (menuToggle && nav) {
   });
 }
 
+// Fermer le menu mobile si on clique en dehors
+document.addEventListener('click', function (e) {
+  const isClickInsideMenu = nav.contains(e.target);
+  const isClickOnToggle = menuToggle.contains(e.target);
+
+  if (!isClickInsideMenu && !isClickOnToggle && nav.classList.contains('open')) {
+    nav.classList.remove('open');
+  }
+});
+
 // Fade-in animation on scroll
 const faders = document.querySelectorAll('.fade-in');
 const observer = new IntersectionObserver(entries => {

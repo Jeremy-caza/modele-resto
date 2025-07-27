@@ -292,50 +292,71 @@ footer {
 body {
     padding-top: 80px; /* espace pour le header fixe */
 }
-.avis-slider {
+
+.avis-carousel {
+  position: relative;
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.carousel-track-container {
   overflow: hidden;
   width: 100%;
-  max-width: 400px;
-  margin: auto;
-  position: relative;
 }
 
-.slider-track {
+.carousel-track {
   display: flex;
-  animation: scrollSlider 20s linear infinite;
-  width: max-content;
+  transition: transform 0.5s ease;
 }
 
-.slide {
-  flex: 0 0 100%;
-  max-width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
+.avis-card {
+  min-width: 300px;
+  max-width: 350px;
+  margin: 0 10px;
+  padding: 20px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  flex-shrink: 0;
 }
 
-.slide img {
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  max-height: 250px; /* ✅ ajuste selon la hauteur max souhaitée */
-  object-fit: contain;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  display: block;
-  margin: auto;
+.avis-card p {
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 10px;
 }
 
-/* Animation */
-@keyframes scrollSlider {
-  0%   { transform: translateX(0); }
-  20%  { transform: translateX(0); }
-  25%  { transform: translateX(-100%); }
-  45%  { transform: translateX(-100%); }
-  50%  { transform: translateX(-200%); }
-  70%  { transform: translateX(-200%); }
-  75%  { transform: translateX(-300%); }
-  95%  { transform: translateX(-300%); }
-  100% { transform: translateX(-400%); }
+.avis-card h4 {
+  color: #666;
+  font-weight: 600;
+}
+
+.carousel-btn {
+  background: #cfa73b;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.carousel-btn:hover {
+  background: #b5972c;
+}
+
+@media (max-width: 768px) {
+  .avis-card {
+    min-width: 80%;
+  }
 }
 
 .about p,

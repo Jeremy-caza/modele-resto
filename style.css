@@ -364,3 +364,64 @@ body {
 .events p {
     text-align: justify;
 }
+
+/* === Mariage & Événements avec image de fond === */
+.events.hero-style {
+  position: relative;
+  background: url('imagesdomaine/photo12.jpg') center/cover no-repeat;
+  color: white;
+  padding: 100px 0;
+  z-index: 1;
+}
+
+.events.hero-style .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5); /* couche sombre */
+  z-index: 1;
+}
+
+.events-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  margin: auto;
+}
+
+.events-content h2 {
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.events-content p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.events-content .event-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  padding: 0;
+  list-style: none;
+}
+
+.events-content .event-list li {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.3s ease;
+}
+
+.events-content .event-list li:hover {
+  background: rgba(255,255,255,0.4);
+}

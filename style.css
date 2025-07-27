@@ -324,13 +324,11 @@ body {
   display: flex;
   transition: transform 0.5s ease;
   flex-wrap: nowrap;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
 }
 
 .avis-card {
-  min-width: 300px;
-  max-width: 350px;
+  min-width: 100%;
+  max-width: 100%;
   margin: 0 10px;
   padding: 20px;
   background: white;
@@ -338,7 +336,6 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: center;
   flex-shrink: 0;
-  scroll-snap-align: center;
 }
 
 .avis-card p {
@@ -370,7 +367,8 @@ body {
 
 @media (max-width: 768px) {
   .avis-card {
-    min-width: 80%;
+    min-width: 33.33%;
+  max-width: 33.33%;
   }
 }
 

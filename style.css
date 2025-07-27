@@ -101,7 +101,7 @@ nav {
     margin-bottom: 1rem;
 }
 .hero-content p {
-    color: grey; /* Plus lisible */
+    color: white; /* Plus lisible */
     font-family: 'Playfair Display', serif; /* Harmonisé avec le titre */
     font-size: 1.5rem; /* Plus visible */
     margin-bottom: 2rem;

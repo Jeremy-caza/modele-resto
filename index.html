@@ -3,171 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Belvédère du Domaine</title>
+    <title>Le Belvédère du Domaine - Domaine d'Exception</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- HEADER / MENU STICKY -->
-    <header id="top">
-        <div class="container flex between">
-            <div class="logo">
-                <a href="#accueil">
-  <img src="imagesdomaine/logo.jpg" alt="Logo Le Belvédère du Domaine" class="logo-img">
-</a>
-            </div>
-            <nav id="nav">
-                <ul class="menu">
+    <!-- HEADER -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">Le Belvédère du Domaine</div>
+            <button class="menu-toggle" aria-label="Menu">☰</button>
+            <nav>
+                <ul class="nav-links">
                     <li><a href="#accueil">Accueil</a></li>
                     <li><a href="#histoire">Notre Histoire</a></li>
                     <li><a href="#espaces">Les Espaces</a></li>
                     <li><a href="#evenements">Événements</a></li>
                     <li><a href="#galerie">Galerie</a></li>
+                    <li><a href="#avis">Avis</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <span class="burger" id="burger">&#9776;</span>
             </nav>
         </div>
     </header>
 
     <!-- ACCUEIL -->
-    <section id="accueil" class="hero fade-in">
-        <div class="hero-text">
+    <section id="accueil" class="hero">
+        <div class="hero-content fade-in">
             <h1>Le Belvédère du Domaine</h1>
             <p>Un domaine exceptionnel pour des événements exceptionnels</p>
             <a href="#histoire" class="btn">Découvrir</a>
         </div>
+        <!-- Utilisez une image de fond pour la section hero via CSS -->
     </section>
 
     <!-- NOTRE HISTOIRE -->
-    <section id="histoire" class="story fade-in">
+    <section id="histoire" class="about fade-in">
         <div class="container">
             <h2>Notre Histoire</h2>
-            <p>Un lieu d’exception niché au cœur de la nature, dans un cadre empreint de charme et de sérénité. Cette ancienne ferme, magnifiquement restaurée, avec une splendide salle de réception ainsi qu’une salle de séminaire, s’étend sur un parc privé de 80 hectares, mêlant coteaux pittoresques, forêts de chênes majestueux et prairies verdoyantes à perte de vue. Avec son toit élégant et ses pierres restaurées, la bâtisse offre un écrin authentique et raffiné pour vos célébrations.
-Depuis le domaine, une vue panoramique sublime se déploie, embrassant les vallées jusqu’aux sommets des Pyrénées, avec le mythique Pic du Midi qui dessine l’horizon, s’étendant de la Haute-Garonne aux Pyrénées-Atlantiques. Ce décor naturel enchanteur et cette ambiance unique feront de votre évènement un moment inoubliable, empreint de la beauté des lieux et de l’atmosphère paisible du Sud-Ouest. 
-            </p>
+            <p>Un lieu d’exception niché au cœur de la nature, dans un cadre empreint de charme et de sérénité. Cette ancienne ferme, magnifiquement restaurée, s’étend sur un parc privé de 80 hectares, mêlant coteaux pittoresques, forêts de chênes majestueux et prairies verdoyantes à perte de vue. Avec son toit élégant et ses pierres restaurées, la bâtisse offre un écrin authentique et raffiné pour vos célébrations. Depuis le domaine, une vue panoramique sublime se déploie, embrassant les vallées jusqu’aux sommets des Pyrénées, avec le mythique Pic du Midi qui dessine l’horizon. Ce décor naturel enchanteur et cette ambiance unique feront de votre évènement un moment inoubliable, empreint de la beauté des lieux et de l’atmosphère paisible du Sud-Ouest.</p>
         </div>
     </section>
 
     <!-- LES ESPACES -->
-    <section id="espaces" class="espaces fade-in">
+    <section id="espaces" class="espaces">
         <div class="container">
-            <h2>Les Espaces</h2>
-            <div class="grid-espaces">
-                <article class="espace">
+            <h2 class="fade-in">Les Espaces</h2>
+            <div class="space-grid">
+                <div class="space fade-in">
                     <img src="imagesdomaine/salle.jpg" alt="Salle de réception">
-                    <h3>Salle de réception</h3>
+                    <h3>Salle de Réception</h3>
                     <p>"Située dans le prolongement naturel de la maison, la salle de réception allie charme authentique et confort moderne. Spacieuse et lumineuse, elle accueille mariages, fêtes familiales ou événements professionnels dans une atmosphère chaleureuse. Une pergola couverte attenante prolonge l’espace vers l’extérieur, idéale pour les cocktails ou les moments conviviaux en plein air."</p>
-                </article>
-                <article class="espace">
+                </div>
+                <div class="space fade-in">
                     <img src="imagesdomaine/bergerie.jpg" alt="Bergerie">
                     <h3>Bergerie</h3>
                     <p>"Avec sa terrasse panoramique face aux sommets pyrénéens, la bergerie offre un cadre idyllique pour vos apéritifs et repas intimistes. Son espace bar au rez-de-chaussée, complété par une salle de bain, en fait un lieu parfait pour partager des moments conviviaux dans un décor naturel et apaisant."</p>
-                </article>
-                <article class="espace">
-                    <img src="imagesdomaine/ext.jpg" alt="Jardin et terrasse">
+                </div>
+                <div class="space fade-in">
+                    <img src="imagesdomaine/ext.jpg" alt="Extérieur & Jardin">
                     <h3>Extérieur & Jardin</h3>
-                    <p>"À l’extérieur, tout invite à la détente et à la convivialité. Deux terrasses aménagées, un terrain de pétanque, des coins salons sous les arbres, un vaste jardin fleuri… le tout ouvert sur une vue imprenable sur la chaîne des Pyrénées. Entre champs, plantes, mobilier d’extérieur et accès pratique en voiture avec parking, chaque espace a été pensé pour savourer pleinement le cadre naturel et apaisant du domaine."
-                    </p>
-                </article>
-                <article class="espace">
+                    <p>"À l’extérieur, tout invite à la détente et à la convivialité. Deux terrasses aménagées, un terrain de pétanque, un vaste jardin fleuri… le tout ouvert sur une vue imprenable sur la chaîne des Pyrénées. Entre champs, plantes, mobilier d’extérieur et accès pratique en voiture avec parking, chaque espace a été pensé pour savourer pleinement le cadre naturel et apaisant du domaine."</p>
+                </div>
+                <div class="space fade-in">
                     <img src="imagesdomaine/chambre.jpg" alt="Maison et chambres">
                     <h3>Maison & Chambres</h3>
-                    <p>"La maison abrite plusieurs chambres, chacune pensée avec soin pour offrir confort, charme et tranquillité. Parmi elles, une suite d’exception, confidentielle, que nous dévoilons rarement, mais dont la magie ne laisse personne indifférent. Ici, chaque détail a été choisi pour créer une atmosphère chaleureuse et hors du temps. Si vous êtes curieux… on vous en dit plus, mais seulement si vous êtes prêts à tomber sous le charme."</p>
-                </article>
+                    <p>La maison abrite plusieurs chambres, chacune pensée avec soin pour offrir confort, charme et tranquillité. Parmi elles, une suite d’exception, confidentielle, que nous dévoilons rarement, mais dont la magie ne laisse personne indifférent. Ici, chaque détail a été choisi pour créer une atmosphère chaleureuse et hors du temps."</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- MARIAGES & ÉVÉNEMENTS -->
-    <section id="evenements" class="evenements fade-in">
+    <section id="evenements" class="events fade-in">
         <div class="container">
             <h2>Mariages & Événements</h2>
-            <p>"Mariages intimistes ou célébrations grandioses, séminaires professionnels, concerts en plein air, retraites bien-être ou même tournages... Le domaine s’adapte à toutes vos envies. Grâce à ses différents espaces, à son cadre naturel inspirant et à ses installations pensées pour recevoir, il devient le lieu idéal pour imaginer, créer, partager. Que ce soit pour vivre un moment fort entre proches ou donner vie à un projet ambitieux, ici tout est possible. Il ne reste qu’à laisser parler votre imagination."
-            </p>
-            <ul class="liste-evenements">
+            <p>"Mariages intimistes ou célébrations grandioses, séminaires professionnels, concerts en plein air, retraites bien-être ou même tournages... Le domaine s’adapte à toutes vos envies. Grâce à ses différents espaces, à son cadre naturel inspirant et à ses installations pensées pour recevoir, il devient le lieu idéal pour imaginer, créer, partager. Que ce soit pour vivre un moment fort entre proches ou donner vie à un projet ambitieux, ici tout est possible. Il ne reste qu’à laisser parler votre imagination."</p>
+            <ul class="event-list">
                 <li>Mariages</li>
+                <li>Baptêmes</li>
+                <li>Anniversaires</li>
+                <li>Fêtes familiales </li>
+                <li>Enterrements de vie de célibataire </li>
+                <li>Baby shower </li>
+                <li>Team building</li>
                 <li>Séminaires</li>
-                <li>Concerts</li>
-                <li>Tournages vidéo</li>
-                <li>Séjours bien-être</li>
-                <!-- Autres événements -->
+                <li>Conférences </li>
+                <li>Soirées d’entreprise/ galas</li>
+                <li>Conférences culturelles</li>
+                <li>Shooting photo</li>
+                <li>séjours bien-être</li>
+                <li>Événements associatifs </li>
+                <li>Bootcamps fitness </li>
+                <!-- Ajoutez d'autres types d'événements ici -->
             </ul>
         </div>
     </section>
 
     <!-- GALERIE -->
-    <section id="galerie" class="galerie fade-in">
+    <section id="galerie" class="galerie">
         <div class="container">
-            <h2>Galerie</h2>
-            <div class="grid-galerie">
-                <!-- Ajoutez vos images ici -->
-                <img src="imagesdomaine/photo1.jpg" alt="Photo 1">
-                <img src="imagesdomaine/photo2.jpg" alt="Photo 2">
-                <img src="imagesdomaine/photo3.jpg" alt="Photo 3">
-                <img src="imagesdomaine/photo4.jpg" alt="Photo 4">
-                <img src="imagesdomaine/photo5.jpg" alt="Photo 5">
-                <img src="imagesdomaine/photo6.jpg" alt="Photo 6">
+            <h2 class="fade-in">Galerie</h2>
+            <div class="gallery-grid">
+                <img src="imagesdomaine/photo1.jpg" alt="Galerie 1" class="fade-in">
+                <img src="imagesdomaine/photo2.jpg" alt="Galerie 2" class="fade-in">
+                <img src="imagesdomaine/photo3.jpg" alt="Galerie 3" class="fade-in">
+                <img src="imagesdomaine/photo4.jpg" alt="Galerie 4" class="fade-in">
+                <img src="imagesdomaine/photo5.jpg" alt="Galerie 5" class="fade-in">
+                <img src="imagesdomaine/photo6.jpg" alt="Galerie 6" class="fade-in">
+                <img src="imagesdomaine/photo7.jpg" alt="Galerie 7" class="fade-in">
+                <img src="imagesdomaine/photo8.jpg" alt="Galerie 8" class="fade-in">
+                <img src="imagesdomaine/photo9.jpg" alt="Galerie 9" class="fade-in">
             </div>
         </div>
     </section>
 
     <!-- AVIS CLIENTS -->
-    <section id="avis" class="avis fade-in">
+    <section id="avis" class="reviews">
         <div class="container">
-            <h2>Avis clients</h2>
-            <div class="avis-list">
-                <div class="testimonial">
-                    <p>Un lieu hors du commun, notre mariage fut un pur bonheur, ses espaces extérieurs sont justes sublimes, l’intérieur incroyable… les chambres avec la location de linge de lit sont vraiment un plus quand les gens viennent de loin , cela permet de vraiment profiter du week-end tous ensemble. Un grand merci aux propriétaires très à l’écoute. On le conseille les yeux fermés.</p>
-                    <span>Amandine VIGNY</span>
+            <h2 class="fade-in">Avis Clients</h2>
+            <div class="review-grid">
+                <div class="review fade-in">
+                    <p>Un lieu hors du commun, notre mariage fut un pur bonheur, ses espaces extérieurs sont justes sublimes, l’intérieur incroyable…</p>
+                    <h4>Amandine VIGNY</h4>
                 </div>
-                <div class="testimonial">
+                <div class="review fade-in">
                     <p>Exceptionnel. Cadre excellent, parfait pour un moment de détente et d’apaisement.</p>
-                    <span>Louane LAFLEUR</span>
+                    <h4>Louane LAFLEUR</h4>
                 </div>
-                <div class="testimonial">
-                    <p>Un lieu absolument magnifique pour notre mariage ! Propriétaires à l’écoute. Nos invités ont été conquis par la beauté du paysage et l’atmosphère chaleureuse qui s’en dégage. Nous ne pouvions rêver mieux.</p>
-                    <span>Pierre MATA</span>
+                <div class="review fade-in">
+                    <p>Un lieu absolument magnifique pour notre mariage ! Propriétaires à l’écoute. Nos invités ont été conquis par la beauté du paysage et l’atmosphère chaleureuse qui s’en dégage...</p>
+                    <h4>Pierre MATA</h4>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ACCÈS & CONTACT -->
-    <section id="contact" class="contact fade-in">
-        <div class="container">
-            <h2>Accès & Contact</h2>
-            <div class="contact-grid">
-                <div class="info-contact">
+    <section id="contact" class="contact">
+       <div class="container contact-wrapper fade-in">
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2930.3452209029416!2d0.23978241544567426!3d43.17915988901042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12aadbb1d6e18ff1%3A0x7a126a5632c0f5e5!2sLe%20Belv%C3%A9d%C3%A8re!5e0!3m2!1sfr!2sfr!4v1722074379216!5m2!1sfr!2sfr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="form-area">
+                <form>
+                    <label>Nom
+                        <input type="text" name="nom" required>
+                    </label>
+                    <label>Email
+                        <input type="email" name="email" required>
+                    </label>
+                    <label>Message
+                        <textarea name="message" rows="5" required></textarea>
+                    </label>
+                    <button type="submit" class="btn">Envoyer</button>
+                </form>
+                <div class="coords">
                     <p>2 Chem. de la Lande, 65190 Tournay</p>
                     <p>06 37 21 04 00</p>
                     <p>belevederedudomaine@gmail.com</p>
+                    <p>Janvier à Décembre</p>
                 </div>
-                <form><!-- Formulaire de contact -->
-                    <input type="text" placeholder="Nom" required>
-                    <input type="email" placeholder="Email" required>
-                    <textarea placeholder="Votre message" required></textarea>
-                    <button type="submit" class="btn">Envoyer</button>
-                </form>
-            </div>
-            <!-- Carte Google Maps intégrée -->
-            <div class="map">
-                <iframe src="https://www.google.com/maps/place/Le+Belv%C3%A9d%C3%A8re+du+Domaine/@43.1900669,0.2845093,17z/data=!3m1!4b1!4m6!3m5!1s0x12a9cba66648e755:0x7f5bcb7256ee3d29!8m2!3d43.1900669!4d0.2845093!16s%2Fg%2F11h6s07bgq?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D" loading="lazy" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
-        <div class="container">
-            <p><!-- Mentions légales --></p>
-            <div class="socials">
-                <a href="https://www.facebook.com/people/Le-Belv%C3%A9d%C3%A8re-du-Domaine/61555397682972/">Facebook</a>
-                <a href="https://www.instagram.com/belvederedudomaine/">Instagram</a>
-                <!-- Autres réseaux -->
+        <div class="container footer-content">
+            <p>&copy; <span id="year"></span> Belvédère du Domaine - Tous droits réservés.</p>
+            <div class="footer-links">
+                <a href="#">mentions-legales.html</a>
+                <a href="#">https://www.facebook.com/people/Le-Belv%C3%A9d%C3%A8re-du-Domaine/61555397682972/</a>
+                <a href="#">https://www.instagram.com/belvederedudomaine/</a>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

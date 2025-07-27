@@ -306,13 +306,13 @@ body {
 
 .avis-carousel {
   position: relative;
-  max-width: 1200px;
+  max-width: 100%;
   margin: auto;
   padding: 40px 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  overflow: hidden;
 }
 
 .carousel-track-container {
@@ -327,15 +327,15 @@ body {
 }
 
 .avis-card {
-  min-width: 100%;
-  max-width: 100%;
-  margin: 0 10px;
+  flex: 0 0 33.33%;
+  max-width: 33.33%;
+  box-sizing: border-box;
   padding: 20px;
+  margin: 0 10px;
   background: white;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: center;
-  flex-shrink: 0;
 }
 
 .avis-card p {
@@ -359,16 +359,32 @@ body {
   font-size: 1.2rem;
   cursor: pointer;
   transition: background 0.3s ease;
+  z-index: 2;
 }
 
 .carousel-btn:hover {
   background: #b5972c;
 }
 
+@media (max-width: 1024px) {
+  .avis-card {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
 @media (max-width: 768px) {
   .avis-card {
-    min-width: 33.33%;
-  max-width: 33.33%;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .avis-carousel {
+    flex-direction: column;
+  }
+
+  .carousel-btn {
+    margin: 10px;
   }
 }
 

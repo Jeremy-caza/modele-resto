@@ -39,3 +39,31 @@ faders.forEach(el => observer.observe(el));
 
 // Footer year
 document.getElementById('year').textContent = new Date().getFullYear();
+
+const track = document.querySelector('.carousel-track');
+const prevBtn = document.querySelector('.carousel-btn.prev');
+const nextBtn = document.querySelector('.carousel-btn.next');
+let currentIndex = 0;
+
+function updateCarousel() {
+  const cardWidth = document.querySelector('.avis-card').offsetWidth + 20;
+  track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+}
+
+nextBtn.addEventListener('click', () => {
+  const totalCards = document.querySelectorAll('.avis-card').length;
+  const visibleCards = Math.floor(document.querySelector('.carousel-track-container').offsetWidth / (document.querySelector('.avis-card').offsetWidth + 20));
+  if (currentIndex < totalCards - visibleCards) {
+    currentIndex++;
+    updateCarousel();
+  }
+});
+
+prevBtn.addEventListener('click', () => {
+  if (currentIndex > 0) {
+    currentIndex--;
+    updateCarousel();
+  }
+});
+
+window.addEventListener('resize', updateCarousel);

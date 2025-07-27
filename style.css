@@ -12,8 +12,8 @@ body {
 }
 h1, h2, h3 {
     font-family: 'Playfair Display', serif;
-    color: #2f2f2f;
-    margin-bottom: 0.5em;
+    color: #DDB23F;
+    margin-bottom: 1,5em;
 }
 a {
     text-decoration: none;
@@ -91,7 +91,35 @@ nav {
 .hero-content {
     position: relative;
     color: #fff;
+    padding: 8rem 2rem; /* Ajouté : agrandit la zone */
 }
+.hero-content h1 {
+    color: white;
+    font-size: 4rem; /* Plus grand */
+    margin-bottom: 1rem;
+}
+.hero-content p {
+    color: grey; /* Plus lisible */
+    font-family: 'Playfair Display', serif; /* Harmonisé avec le titre */
+    font-size: 1.5rem; /* Plus visible */
+    margin-bottom: 2rem;
+}
+.hero-content .btn {
+    background-color: #cfa73b;
+    color: white;
+    font-size: 1.2rem;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.hero-content .btn:hover {
+    background-color: #b9902e;
+}
+
 .btn {
     display: inline-block;
     margin-top: 20px;

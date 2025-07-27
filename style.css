@@ -236,7 +236,18 @@ section {
     border-radius: 5px;
 }
 .coords {
-    margin-top: 20px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+.coords a {
+  color: #cfa73b;
+  text-decoration: underline;
+  font-weight: bold;
+}
+.coords p {
+  margin: 10px 0;
 }
 .footer-content {
     display: flex;

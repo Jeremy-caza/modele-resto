@@ -41,9 +41,10 @@ header {
     justify-content: space-between;
     align-items: center;
 }
-.logo {
-    font-size: 1.5rem;
-    font-weight: 700;
+.logo img {
+    height: 60px; /* ajuste selon la taille de ton logo */
+    width: auto;
+    display: block;
 }
 .menu-toggle {
     display: none;

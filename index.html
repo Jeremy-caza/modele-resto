@@ -1,206 +1,164 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Belvédère du Domaine - Domaine d'Exception</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu - Restaurant</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #fffaf5;
+      color: #333;
+    }
+
+    header {
+      background-color: #ffa726;
+      text-align: center;
+      padding: 1em;
+    }
+
+    header img {
+      max-width: 80px;
+      margin-bottom: 0.5em;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5em;
+    }
+
+    .btn-carte {
+      background-color: #ffa726;
+      color: white;
+      border: none;
+      font-size: 1.2em;
+      padding: 1em;
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .accordion {
+      background-color: #ffe0b2;
+      color: #333;
+      cursor: pointer;
+      padding: 1em;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 1.1em;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    .accordion:hover {
+      background-color: #ffcc80;
+    }
+
+    .panel {
+      padding: 0 1em;
+      display: none;
+      background-color: #fff8ee;
+    }
+
+    .item {
+      margin: 1em 0;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.5em;
+    }
+
+    .item-title {
+      font-weight: bold;
+      font-size: 1em;
+    }
+
+    .item-desc {
+      font-size: 0.9em;
+      color: #666;
+    }
+
+    .item-price {
+      font-weight: bold;
+      color: #333;
+      margin-top: 0.3em;
+    }
+  </style>
 </head>
 <body>
-    <!-- HEADER -->
-    <header>
-  <div class="container header-content">
-    
-    <div class="logo">
-      <a href="#accueil">
-        <img src="imagesdomaine/logo.jpg" alt="Le Belvédère du Domaine">
-      </a>
+
+  <header>
+    <img src="logo.png" alt="Logo" />
+    <h1>EUROPE TARBES</h1>
+  </header>
+
+  <button class="btn-carte">Voir la carte</button>
+
+  <!-- Section Boissons -->
+  <button class="accordion">Boissons</button>
+  <div class="panel">
+    <div class="item">
+      <div class="item-title">Coca-Cola</div>
+      <div class="item-desc">33cl, servi frais</div>
+      <div class="item-price">2,50€</div>
     </div>
-    
-    <button class="menu-toggle" aria-label="Menu">☰</button>
-    
-    <nav>
-      <ul class="nav-links">
-        <li><a href="#accueil">Accueil</a></li>
-        <li><a href="#histoire">Notre Histoire</a></li>
-        <li><a href="#espaces">Les Espaces</a></li>
-        <li><a href="#evenements">Événements</a></li>
-        <li><a href="#galerie">Galerie</a></li>
-        <li><a href="#avis">Avis</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-
-  </div> <!-- ✅ Fermeture correcte ici -->
-</header>
-
-    <!-- ACCUEIL -->
-    <section id="accueil" class="hero">
-        <div class="hero-content fade-in">
-            <h1>Le Belvédère du Domaine</h1>
-            <p>Un domaine exceptionnel pour des événements exceptionnels</p>
-            <a href="#histoire" class="btn">Découvrir</a>
-        </div>
-        <!-- Utilisez une image de fond pour la section hero via CSS -->
-    </section>
-
-    <!-- NOTRE HISTOIRE -->
-    <section id="histoire" class="about fade-in">
-        <div class="container">
-            <h2>Notre Histoire</h2>
-            <p>Un lieu d’exception niché au cœur de la nature, dans un cadre empreint de charme et de sérénité. Cette ancienne ferme, magnifiquement restaurée, s’étend sur un parc privé de 80 hectares, mêlant coteaux pittoresques, forêts de chênes majestueux et prairies verdoyantes à perte de vue. Avec son toit élégant et ses pierres restaurées, la bâtisse offre un écrin authentique et raffiné pour vos célébrations. Depuis le domaine, une vue panoramique sublime se déploie, embrassant les vallées jusqu’aux sommets des Pyrénées, avec le mythique Pic du Midi qui dessine l’horizon. Ce décor naturel enchanteur et cette ambiance unique feront de votre évènement un moment inoubliable, empreint de la beauté des lieux et de l’atmosphère paisible du Sud-Ouest.</p>
-        </div>
-    </section>
-
-    <!-- LES ESPACES -->
-    <section id="espaces" class="espaces">
-        <div class="container">
-            <h2 class="fade-in">Les Espaces</h2>
-            <div class="space-grid">
-                <div class="space fade-in">
-                    <img src="imagesdomaine/salle.jpg" alt="Salle de réception">
-                    <h3>Salle de Réception</h3>
-                    <p>"Située dans le prolongement naturel de la maison, la salle de réception allie charme authentique et confort moderne. Spacieuse et lumineuse, elle accueille mariages, fêtes familiales ou événements professionnels dans une atmosphère chaleureuse. Une pergola couverte attenante prolonge l’espace vers l’extérieur, idéale pour les cocktails ou les moments conviviaux en plein air."</p>
-                </div>
-                <div class="space fade-in">
-                    <img src="imagesdomaine/bergerie.jpg" alt="Bergerie">
-                    <h3>Bergerie</h3>
-                    <p>"Avec sa terrasse panoramique face aux sommets pyrénéens, la bergerie offre un cadre idyllique pour vos apéritifs et repas intimistes. Son espace bar au rez-de-chaussée, complété par une salle de bain, en fait un lieu parfait pour partager des moments conviviaux dans un décor naturel et apaisant."</p>
-                </div>
-                <div class="space fade-in">
-                    <img src="imagesdomaine/ext.jpg" alt="Extérieur & Jardin">
-                    <h3>Extérieur & Jardin</h3>
-                    <p>"À l’extérieur, tout invite à la détente et à la convivialité. Deux terrasses aménagées, un terrain de pétanque, un vaste jardin fleuri… le tout ouvert sur une vue imprenable sur la chaîne des Pyrénées. Entre champs, plantes, mobilier d’extérieur et accès pratique en voiture avec parking, chaque espace a été pensé pour savourer pleinement le cadre naturel et apaisant du domaine."</p>
-                </div>
-                <div class="space fade-in">
-                    <img src="imagesdomaine/chambre.jpg" alt="Maison et chambres">
-                    <h3>Maison & Chambres</h3>
-                    <p>La maison abrite plusieurs chambres, chacune pensée avec soin pour offrir confort, charme et tranquillité. Parmi elles, une suite d’exception, confidentielle, que nous dévoilons rarement, mais dont la magie ne laisse personne indifférent. Ici, chaque détail a été choisi pour créer une atmosphère chaleureuse et hors du temps."</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- MARIAGES & ÉVÉNEMENTS -->
-   <section id="evenements" class="events hero-style">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="events-content">
-      <h2>Mariages & Événements</h2>
-      <p>"Mariages intimistes ou célébrations grandioses, séminaires professionnels, concerts en plein air, retraites bien-être ou même tournages... Le domaine s’adapte à toutes vos envies. Grâce à ses différents espaces, à son cadre naturel inspirant et à ses installations pensées pour recevoir, il devient le lieu idéal pour imaginer, créer, partager. Que ce soit pour vivre un moment fort entre proches ou donner vie à un projet ambitieux, ici tout est possible. Il ne reste qu’à laisser parler votre imagination."</p>
-      <ul class="event-list">
-        <li>Mariages</li>
-        <li>Baptêmes</li>
-        <li>Anniversaires</li>
-        <li>Fêtes familiales </li>
-        <li>Enterrements de vie de célibataire </li>
-        <li>Baby shower </li>
-        <li>Team building</li>
-        <li>Séminaires</li>
-        <li>Conférences </li>
-        <li>Soirées d’entreprise / galas</li>
-        <li>Conférences culturelles</li>
-        <li>Shooting photo</li>
-        <li>Séjours bien-être</li>
-        <li>Événements associatifs </li>
-        <li>Bootcamps fitness </li>
-      </ul>
+    <div class="item">
+      <div class="item-title">Eau minérale</div>
+      <div class="item-desc">Plate ou gazeuse</div>
+      <div class="item-price">2,00€</div>
     </div>
   </div>
-</section>
 
-    <!-- GALERIE -->
-    <section id="galerie" class="galerie">
-        <div class="container">
-            <h2 class="fade-in">Galerie</h2>
-            <div class="gallery-grid">
-                <img src="imagesdomaine/photo1.jpg" alt="Galerie 1" class="fade-in">
-                <img src="imagesdomaine/photo2.jpg" alt="Galerie 2" class="fade-in">
-                <img src="imagesdomaine/photo3.jpg" alt="Galerie 3" class="fade-in">
-                <img src="imagesdomaine/photo4.jpg" alt="Galerie 4" class="fade-in">
-                <img src="imagesdomaine/photo5.jpg" alt="Galerie 5" class="fade-in">
-                <img src="imagesdomaine/photo6.jpg" alt="Galerie 6" class="fade-in">
-                <img src="imagesdomaine/photo7.jpg" alt="Galerie 7" class="fade-in">
-                <img src="imagesdomaine/photo8.jpg" alt="Galerie 8" class="fade-in">
-                <img src="imagesdomaine/photo9.jpg" alt="Galerie 9" class="fade-in">
-                <img src="imagesdomaine/photo10.jpg" alt="Galerie 10" class="fade-in">
-            </div>
-        </div>
-    </section>
+  <!-- Section Carte restaurant -->
+  <button class="accordion">Carte restaurant</button>
+  <div class="panel">
+    <button class="accordion">Salades</button>
+    <div class="panel">
+      <div class="item">
+        <div class="item-title">Storia de la Storia</div>
+        <div class="item-desc">Jeunes pousses, tomates cerises, avocat, oignons rouges, graines, oignons frits, gravlax de saumon</div>
+        <div class="item-price">16,50€</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Veggie</div>
+        <div class="item-desc">Jeunes pousses, tomates cerises, avocat, légumes du moment</div>
+        <div class="item-price">13,00€</div>
+      </div>
+    </div>
 
-    <!-- AVIS CLIENTS -->
-    <section id="avis" class="reviews">
-        <div class="container">
-            <h2 class="fade-in">Avis Clients</h2>
-            <div class="avis-carousel">
-  <button class="carousel-btn prev">←</button>
-  <div class="carousel-track-container">
-    <div class="carousel-track">
-      <div class="avis-card">
-        <p>"Un lieu absolument magnifique pour notre mariage ! Propriétaires à l’écoute. Nos invités ont été conquis par la beauté du paysage et l’atmosphère chaleureuse qui s’en dégage."</p>
-        <h4>- Pierre MATA</h4>
+    <button class="accordion">Poké Bowls</button>
+    <div class="panel">
+      <div class="item">
+        <div class="item-title">Poké saumon</div>
+        <div class="item-desc">Riz vinaigré, saumon frais, mangue, concombre, sauce soja</div>
+        <div class="item-price">14,50€</div>
       </div>
-      <div class="avis-card">
-        <p>"Exceptionnel. Cadre excellent, parfait pour un moment de détente et d’apaisement."</p>
-        <h4>- Louane LAFLEUR</h4>
-      </div>
-      <div class="avis-card">
-        <p>"Superbe endroit pour fêter un événement en famille ! De plus vous pouvez faire dormir sur place plusieurs personnes. J’adoreeee et les patrons très gentils, accueillants et se démènent pour que tout se passe bien !"</p>
-        <h4>- Zaza DBR</h4>
-      </div>
-      <div class="avis-card">
-        <p>"Nous avons célébré notre mariage ce 3 mai 2025 au BELVÉDÈRE DU DOMAINE à Tournay, un lieu hors du temps et magique. La vue sur la chaîne des Pyrénées y est à couper le souffle et nos convives, venant pour la plupart de région parisienne, ont été éblouis!"</p>
-        <h4>- Sylvie FERNANDES</h4>
+    </div>
+
+    <button class="accordion">À partager… ou pas !</button>
+    <div class="panel">
+      <div class="item">
+        <div class="item-title">Planche mixte</div>
+        <div class="item-desc">Charcuterie, fromage, pain grillé</div>
+        <div class="item-price">18,00€</div>
       </div>
     </div>
   </div>
-  <button class="carousel-btn next">→</button>
-</div>
-</div>
-</section>
 
-    <!-- ACCÈS & CONTACT -->
-    <section id="contact" class="contact">
-       <div class="container contact-wrapper fade-in">
-    <div class="map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2908.925654431989!2d0.28193437499192237!3d43.19007078226318!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a9cba66648e755%3A0x7f5bcb7256ee3d29!2sLe%20Belv%C3%A9d%C3%A8re%20du%20Domaine!5e0!3m2!1sfr!2sfr!4v1753635976674!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-    <div class="form-area">
-                <form>
-                    <label>Nom
-                        <input type="text" name="nom" required>
-                    </label>
-                    <label>Email
-                        <input type="email" name="email" required>
-                    </label>
-                    <label>Message
-                        <textarea name="message" rows="5" required></textarea>
-                    </label>
-                    <button type="submit" class="btn">Envoyer</button>
-                </form>
-              <div class="coords">
-  <p><strong>📍 2 Chem. de la Lande, 65190 Tournay</strong></p>
-  <p><strong>📞 <a href="tel:+33637210400">06 37 21 04 00</a></strong></p>
-  <p><strong>✉️ <a href="mailto:belevederedudomaine@gmail.com">belevederedudomaine@gmail.com</a></strong></p>
-  <p><em>📆 Janvier à Décembre</em></p>
-</div>
-            </div>
-        </div>
-    </section>
+  <script>
+    const acc = document.getElementsByClassName("accordion");
+    for (let i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        const panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
+      });
+    }
+  </script>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="container footer-content">
-            <p>&copy; <span id="year"></span> Belvédère du Domaine - Tous droits réservés.</p>
-           <div class="footer-links">
-  <a href="mentions-legales.html">Mentions légales</a>
-  <a href="https://www.facebook.com/people/Le-Belvédère-du-Domaine/61555397682972/" target="_blank">Facebook</a>
-  <a href="https://www.instagram.com/belvederedudomaine/" target="_blank">Instagram</a>
-</div>
-        </div>
-    </footer>
-
-<script src="script.js"></script>
 </body>
 </html>

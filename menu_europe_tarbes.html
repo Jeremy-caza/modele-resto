@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Europe Tarbes</title>
+  <style>
+    :root {
+      --orange: #ffa726;
+      --beige: #ffe0b2;
+      --beige-light: #fff3e0;
+      --text-dark: #333;
+      --text-light: #fff;
+      --border-radius: 12px;
+      --shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: var(--beige-light);
+      color: var(--text-dark);
+    }
+
+    header {
+      background-color: var(--orange);
+      text-align: center;
+      padding: 20px;
+    }
+
+    header img {
+      width: 80px;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      margin: 5px 0 0 0;
+      font-size: 24px;
+    }
+
+    .btn-carte {
+      background-color: var(--orange);
+      color: white;
+      border: none;
+      font-size: 18px;
+      padding: 15px;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+      border-radius: var(--border-radius);
+      margin: 10px auto;
+      display: block;
+    }
+
+    .accordion {
+      background-color: var(--beige);
+      margin: 10px;
+      padding: 15px;
+      border: none;
+      text-align: left;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      width: calc(100% - 20px);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .accordion::after {
+      content: "\25BC";
+      font-size: 14px;
+    }
+
+    .accordion.active::after {
+      content: "\25B2";
+    }
+
+    .panel {
+      display: none;
+      background-color: white;
+      margin: 0 10px 10px 10px;
+      padding: 10px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+
+    .item {
+      margin: 10px 0;
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .item-title {
+      font-weight: bold;
+      margin-bottom: 3px;
+    }
+
+    .item-desc {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .item-price {
+      font-weight: bold;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="logo.png" alt="Logo" />
+  <h1>EUROPE TARBES</h1>
+</header>
+
+<button class="btn-carte">📖 Voir la carte</button>
+
+<!-- Boissons -->
+<button class="accordion">Boissons</button>
+<div class="panel">
+  <div class="item">
+    <div class="item-title">Coca-Cola</div>
+    <div class="item-desc">33cl, servi frais</div>
+    <div class="item-price">2,50€</div>
+  </div>
+  <div class="item">
+    <div class="item-title">Eau minérale</div>
+    <div class="item-desc">Plate ou gazeuse</div>
+    <div class="item-price">2,00€</div>
+  </div>
+</div>
+
+<!-- Carte restaurant -->
+<button class="accordion">Carte restaurant</button>
+<div class="panel">
+  <button class="accordion">Salades</button>
+  <div class="panel">
+    <div class="item">
+      <div class="item-title">Veggie</div>
+      <div class="item-desc">Jeunes pousses, tomates cerises, avocat...</div>
+      <div class="item-price">13,00€</div>
+    </div>
+  </div>
+
+  <button class="accordion">Pizzas</button>
+  <div class="panel">
+    <button class="accordion">Les classiques</button>
+    <div class="panel">
+      <div class="item">
+        <div class="item-title">Margherita</div>
+        <div class="item-desc">Tomate, mozzarella, basilic</div>
+        <div class="item-price">12,50€</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const acc = document.querySelectorAll('.accordion');
+  acc.forEach(btn => {
+    btn.addEventListener('click', function () {
+      this.classList.toggle('active');
+      let panel = this.nextElementSibling;
+      if (panel && panel.classList.contains('panel')) {
+        panel.style.display = (panel.style.display === "block") ? "none" : "block";
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

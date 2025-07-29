@@ -1,1 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pizzeria Artisanale</title>
+
+  <!-- Polices Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Feuille de style -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <img src="images/logo.png" alt="Logo Pizzeria" />
+        <span>PIZZAS ARTISANALES</span>
+      </div>
+      <nav class="navbar">
+        <a href="#accueil">Accueil</a>
+        <a href="#apropos">À propos</a>
+        <a href="#menu">Menu</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="uber-link">
+        <a href="#"><img src="images/ubereats.png" alt="Commander sur Uber Eats" /></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Section Hero -->
+  <section class="hero" id="accueil">
+    <div class="hero-content">
+      <h1>VOTRE<br>PIZZERIA</h1>
+      <p>Artisanale à Tarbes</p>
+      <div class="hero-icons">
+        <span class="dot beige"></span>
+        <span class="dot bleu"></span>
+        <span class="dot rouge"></span>
+      </div>
+    </div>
+    <div class="hero-call">
+      <a href="tel:+33562517017" class="call-btn"><img src="images/call-icon.png" alt="Appeler" /></a>
+      <a href="#"><img src="images/ubereats.png" alt="Uber Eats" class="ubereats-btn" /></a>
+    </div>
+  </section>
+
+    <!-- Image pizza floue en fond -->
+  <div class="pizza-bg">
+    <img src="images/pizza-bg.jpg" alt="Pizza artisanale" />
+  </div>
+
+  <!-- Section promotionnelle -->
+  <section class="promo">
+    <div class="promo-content">
+      <div class="promo-images">
+        <img src="images/skate-livreur.jpg" alt="Livreur skate" class="photo-skate" />
+        <img src="images/pizza-table.jpg" alt="Pizza sur table" class="photo-pizza" />
+      </div>
+      <div class="promo-text">
+        <h2>UNE<br>PIZZA<br>CHEF&nbsp;?</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section présentation -->
+  <section class="presentation" id="apropos">
+    <div class="container">
+      <p>
+        Au menu, plus de 40 pizzas artisanales salées et sucrées,<br>
+        des ingrédients soigneusement sélectionnés, une pâte<br>
+        fraîche pétrie tous les jours sur place, une sauce tomate<br>
+        maison, de l’amour, de la passion…<br><br>
+        En somme, La Solina offre bien plus qu’une simple expérience<br>
+        culinaire, c’est une invitation à partager des moments<br>
+        gourmands empreints de convivialité et de bonheur.
+      </p>
+      <a href="#menu" class="btn-dark">Commander</a>
+    </div>
+  </section>
+
+    <!-- Section Menu -->
+  <section class="menu-section" id="menu">
+    <div class="container">
+      <div class="menu-categories">
+        <button class="category-btn active" data-category="basique">Basiques</button>
+        <button class="category-btn" data-category="classique">Classiques</button>
+        <button class="category-btn" data-category="gourmande">Gourmandes</button>
+        <button class="category-btn" data-category="speciale">Spéciales</button>
+        <button class="category-btn" data-category="bambino">Bambino</button>
+        <button class="category-btn" data-category="dessert">Desserts & Boissons</button>
+      </div>
+
+      <!-- Pizzas - Basiques -->
+      <div class="menu-list active" id="basique">
+        <div class="menu-item">
+          <h3>LA FROMAGE</h3>
+          <p>Sauce tomate (tomates 100% italiennes), olives, mozzarella, emmental fondu. Pizza de 33cm et <strong>6,60€</strong> pour une pizza de 29cm.</p>
+          <span class="price">7,70€</span>
+        </div>
+        <div class="menu-item">
+          <h3>LA JAMBON</h3>
+          <p>Sauce tomate, olives, jambon supérieur, mozzarella. 33cm et <strong>8,60€</strong> pour 29cm.</p>
+          <span class="price">9,90€</span>
+        </div>
+        <div class="menu-item">
+          <h3>LA PROVENÇALE</h3>
+          <p>Sauce tomate, tomates cerises, persillade, herbes de Provence, mozzarella. 33cm et <strong>7,50€</strong> pour 29cm.</p>
+          <span class="price">8,90€</span>
+        </div>
+        <div class="menu-item">
+          <h3>LA REINE</h3>
+          <p>Sauce tomate, jambon supérieur, champignons, mozzarella. 33cm et <strong>9,50€</strong> pour 29cm.</p>
+          <span class="price">11,50€</span>
+        </div>
+      </div>
+
+      <!-- Pizzas - Gourmandes (extrait seulement ici pour raccourcir) -->
+      <div class="menu-list" id="gourmande">
+        <div class="menu-item">
+          <h3>LA 4 FROMAGES</h3>
+          <p>Sauce tomate, olives, roquefort, parmesan, emmental fondu, mozzarella. 33cm et <strong>10,80€</strong> pour 29cm.</p>
+          <span class="price">12,90€</span>
+        </div>
+        <div class="menu-item">
+          <h3>LA SAVOYARDE</h3>
+          <p>Sauce tomate, pommes de terre, lardons, reblochon, crème, mozzarella. 33cm et <strong>12,90€</strong> pour 29cm.</p>
+          <span class="price">14,90€</span>
+        </div>
+        <!-- ... autres pizzas à ajouter ici -->
+      </div>
+
+      <!-- Les autres catégories suivront aussi -->
+    </div>
+  </section>
+
+    <!-- Section Contact -->
+  <section class="contact-section" id="contact">
+    <div class="container contact-container">
+      <form class="contact-form">
+        <input type="text" placeholder="Téléphone" required />
+        <input type="email" placeholder="Adresse e-mail" required />
+        <textarea placeholder="Message" required></textarea>
+        <div class="checkbox-wrapper">
+          <label>
+            <input type="checkbox" required />
+            En cochant cette case, vous reconnaissez avoir pris connaissance<br />
+            et accepté notre politique de confidentialité.
+          </label>
+        </div>
+        <button type="submit" class="btn-submit">ENVOYER</button>
+      </form>
+
+      <div class="contact-text">
+        <h2>CONTACTER</h2>
+        <p>
+          Pour une soirée entre amis, un repas en famille ou simplement pour savourer l’une de nos délicieuses pizzas chez vous, La Solina vous promet une expérience culinaire exceptionnelle et pleine de saveurs !
+        </p>
+        <a href="#menu" class="btn-light">Commander</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-container">
+      <div class="footer-logo">
+        <img src="images/logo.png" alt="Logo" />
+        <p>PIZZAS ARTISANALES</p>
+      </div>
+      <div class="footer-infos">
+        <div class="footer-item">
+          <img src="images/clock.png" alt="Horaires" />
+          <span>7J/7 DE 18H À 22H</span>
+        </div>
+        <div class="footer-item">
+          <img src="images/phone.png" alt="Téléphone" />
+          <span>05 62 51 70 17</span>
+        </div>
+        <div class="footer-item">
+          <img src="images/location.png" alt="Adresse" />
+          <span>TARBES 65000</span>
+        </div>
+      </div>
+      <div class="footer-socials">
+        <a href="#"><img src="images/facebook.png" alt="Facebook" /></a>
+        <a href="#"><img src="images/instagram.png" alt="Instagram" /></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Copyright © 2023 – Proudly made by Break-Out Company</p>
+      <a href="#">Mentions légales</a> – <a href="#">Politique de confidentialité</a>
+    </div>
+  </footer>
+
+</body>
+</html>
 

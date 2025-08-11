@@ -89,6 +89,18 @@
 
     /* ====== Hero ====== */
     .hero { padding: 100px 0 40px; position: relative; overflow: hidden; }
+    
+    /* ===== Section backgrounds (full-bleed) ===== */
+    .bg-bleed { position: relative; }
+    .bg-bleed::before {
+      content:""; position:absolute; z-index:-1;
+      left:50%; top:0; width:100vw; height:100%;
+      transform:translateX(-50%);
+      background: var(--bg-img) center/cover no-repeat;
+      opacity: var(--bg-opacity, .18);
+      filter: var(--bg-filter, none);
+    }
+
     .display {
       font-family: var(--ff-head); font-weight:900; line-height: .95; letter-spacing:.3px;
       font-size: clamp(48px, 8vw, 112px); text-transform: uppercase;
@@ -183,7 +195,7 @@
     <div class="nav-wrap">
       <a class="brand" href="#top" aria-label="Accueil">
         <!-- Remplacez src par votre logo -->
-        <img src="photomenu/logo.png" alt="Logo Pizzeria" onerror="this.style.display='none'">
+        <img src="photomenu/lasolina_fondclair.png" alt="Logo Pizzeria" onerror="this.style.display='none'">
         <span>PIZZERIA ARTISANALE</span>
       </a>
 
@@ -210,7 +222,7 @@
   </header>
 
   <!-- =================== HERO =================== -->
-  <section class="hero container" id="top">
+  <section class="hero container bg-bleed" id="top" style="--bg-img: url('photomenu/lasolina_fondclair.png'); --bg-opacity:.22;">
     <h1 class="display">Votre<br/>Pizzeria</h1>
     <p class="subtitle">Artisanale à Tarbes</p>
     <div class="hero-cta">
@@ -246,7 +258,7 @@
   </section>
 
   <!-- =================== CONTACT =================== -->
-  <section id="contact" class="container">
+  <section id="contact" class="container bg-bleed" style="--bg-img: url('photomenu/panneau.jpg'); --bg-opacity:.15;">
     <div class="contact-wrap">
       <form class="form-card" onsubmit="event.preventDefault(); alert('Merci ! Votre message a bien été préparé (démo).');">
         <h2 style="font-family:var(--ff-head); font-weight:900;">Nous contacter</h2>
@@ -272,14 +284,14 @@
 
       <aside class="story-card">
         <p style="font-size:18px; margin-top:0;">Pour une soirée entre amis, un repas en famille ou simplement pour savourer l’une de nos délicieuses pizzas chez vous, nous vous promettons une expérience culinaire exceptionnelle et pleine de saveurs !</p>
-        <img src="photomenu/camion.jpg" alt="Part de pizza – illustration" style="border-radius: 16px; box-shadow: var(--shadow-1);">
+        <img src="photomenu/DCS00809.jpg" alt="Part de pizza – illustration" style="border-radius: 16px; box-shadow: var(--shadow-1);">
       </aside>
     </div>
   </section>
 
   <footer class="container">
     <div class="footer-head">
-      <img src="photomenu/logo.png" alt="Logo Pizzeria" class="logo" onerror="this.style.display='none'">
+      <img src="lasolina_fondclair.png" alt="Logo Pizzeria" class="logo" onerror="this.style.display='none'">
       <div class="slogan">PIZZAS ARTISANALES</div>
     </div>
 
@@ -417,6 +429,30 @@
       mobileMenu.style.display = 'none';
     });
 
+    // ===== Smooth scroll with sticky offset =====
+    function smoothScrollTo(id){
+      const el = document.querySelector(id);
+      if(!el) return;
+      const navH = document.querySelector('.nav-wrap').getBoundingClientRect().height + 20; // marge de respiration
+      const y = el.getBoundingClientRect().top + window.scrollY - navH;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        if (!id || id === '#') return; // garde les faux liens
+        if (id.length > 1 && document.querySelector(id)) {
+          e.preventDefault();
+          history.pushState(null, '', id);
+          smoothScrollTo(id);
+          setActive(id);
+          mobileMenu.style.display = 'none';
+        }
+      });
+    });
+      mobileMenu.style.display = 'none';
+    });
+
     // ===== Burger mobile =====
     const burger = document.getElementById('burger');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -451,7 +487,7 @@
     renderTabs();
     selectTab(0);
     setActive('#top');
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const yearEl = document.getElementById('year'); if (yearEl) yearEl.textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

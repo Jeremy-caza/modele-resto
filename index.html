@@ -50,6 +50,7 @@
     .nav-wrap {
       background: var(--paper); border-radius: 999px; box-shadow: var(--shadow-1);
       padding: 10px 18px; display: flex; align-items: center; justify-content: space-between;
+      position: relative;
     }
     .brand { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.5px; }
     .brand img { width: 140px; height:auto; }
@@ -70,6 +71,21 @@
     .mobile-menu { display:none; position: absolute; left:0; right:0; top:62px; background:var(--paper); border-radius: 20px; box-shadow: var(--shadow-2); padding:16px; }
     .mobile-menu a { display:block; padding:12px 8px; font-weight:600; border-radius:10px; }
     .mobile-menu a:active { background:#00000008; }
+
+    /* ====== Mobile tweaks ====== */
+    @media (max-width: 900px) {
+      html, body { overflow-x: hidden; }
+      .container { padding-inline: 14px; }
+      .nav-wrap { padding: 8px 12px; }
+      .desktop-nav { display: none; }
+      .burger { display: inline-grid; }
+      .brand img { width: 120px; }
+      .brand span { display: none; } /* évite le chevauchement du libellé avec la nav */
+      .mobile-menu { top: 56px; }
+    }
+
+    /* Offset d’ancrage pour la barre sticky */
+    #top, #apropos, #menu, #contact { scroll-margin-top: 90px; }
 
     /* ====== Hero ====== */
     .hero { padding: 100px 0 40px; position: relative; overflow: hidden; }
@@ -150,7 +166,7 @@
 
     /* ====== Bouton téléphone flottant (UberEats supprimé volontairement) ====== */
     .fab-call {
-      position: fixed; right: 18px; bottom: 18px; z-index: 60;
+      position: fixed; right: calc(18px + env(safe-area-inset-right)); bottom: calc(18px + env(safe-area-inset-bottom)); z-index: 60;
       width: 60px; height: 60px; border-radius: 999px; display:grid; place-items:center;
       background: var(--accent); color:#fff; box-shadow: 0 14px 28px rgba(232,107,102,.35);
       font-weight: 900; font-size: 22px; line-height: 1; text-decoration: none;
@@ -167,7 +183,7 @@
     <div class="nav-wrap">
       <a class="brand" href="#top" aria-label="Accueil">
         <!-- Remplacez src par votre logo -->
-        <img src="photomenu/lasolina_fondclair.png" alt="Logo Pizzeria" onerror="this.style.display='none'">
+        <img src="photomenu/logo.png" alt="Logo Pizzeria" onerror="this.style.display='none'">
         <span>PIZZERIA ARTISANALE</span>
       </a>
 
@@ -256,14 +272,14 @@
 
       <aside class="story-card">
         <p style="font-size:18px; margin-top:0;">Pour une soirée entre amis, un repas en famille ou simplement pour savourer l’une de nos délicieuses pizzas chez vous, nous vous promettons une expérience culinaire exceptionnelle et pleine de saveurs !</p>
-        <img src="photomenu/DSC00809.jpg" alt="Part de pizza – illustration" style="border-radius: 16px; box-shadow: var(--shadow-1);">
+        <img src="photomenu/camion.jpg" alt="Part de pizza – illustration" style="border-radius: 16px; box-shadow: var(--shadow-1);">
       </aside>
     </div>
   </section>
 
   <footer class="container">
     <div class="footer-head">
-      <img src="photomenu/lasolina_fondclair.png" alt="Logo Pizzeria" class="logo" onerror="this.style.display='none'">
+      <img src="photomenu/logo.png" alt="Logo Pizzeria" class="logo" onerror="this.style.display='none'">
       <div class="slogan">PIZZAS ARTISANALES</div>
     </div>
 
@@ -323,11 +339,12 @@
           { name: "La Reine", price: 11.50, desc: "Sauce tomate, olives, jambon, champignons, mozzarella. 33 cm.", note: "9,50€ en 29 cm" }
         ],
         "Classiques": [
-          { name: "La Campagnarde", price: 11.80, desc: "Sauce tomate, olives, lardons, persillade, crème fraîche, mozzarella. 33 cm.", note: "9,70€ en 29 cm" },
-          { name: "La Tropicale", price: 11.90, desc: "Sauce tomate, olives, jambon supérieur (porc français), ananas, crème fraîche, mozzarella. 33 cm.", note: "9,70€ en 29 cm" },
+          { name: "La Campagnarde", price: 11.80, desc: "Sauce tomate, olives, lardons, persillade, crème fraîche, mozzarella. 29 cm." },
+          { name: "La Tropicale", price: 11.90, desc: "Sauce tomate, olives, jambon supérieur (porc français), ananas, crème fraîche, mozzarella. 33 cm." },
           { name: "La Chèvre", price: 11.20, desc: "Sauce tomate, olives, chèvre, mozzarella. 33 cm.", note: "9,70€ en 29 cm" },
           { name: "La Beni Veggie", price: 11.50, desc: "Sauce tomate, olives, poivrons, champignons, cœurs d’artichauts, tomates, mozzarella. 33 cm.", note: "9,20€ en 29 cm" },
           { name: "La Chorizo", price: 11.50, desc: "Sauce tomate, olives, chorizo, oignons, poivrons, mozzarella. 33 cm.", note: "9,50€ en 29 cm" },
+          { name: "L’Orientale", price: 11.90, desc: "Sauce tomate, olives, merguez, oignons, poivrons, mozzarella. 33 cm." }
         ],
         "Gourmandes": [
           { name: "La Raclette", price: 12.90, desc: "Crème fraîche, pommes de terre, lardons, raclette, mozzarella." },
@@ -395,7 +412,10 @@
     function setActive(hash) {
       navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === hash));
     }
-    window.addEventListener('hashchange', () => setActive(location.hash||'#top'));
+    window.addEventListener('hashchange', () => {
+      setActive(location.hash||'#top');
+      mobileMenu.style.display = 'none';
+    });
 
     // ===== Burger mobile =====
     const burger = document.getElementById('burger');
@@ -404,6 +424,7 @@
       mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
     });
     mobileMenu.addEventListener('click', () => mobileMenu.style.display = 'none');
+    window.addEventListener('resize', () => { if (window.innerWidth > 900) mobileMenu.style.display = 'none'; });
 
     // ===== Commander + bouton téléphone =====
     const fabCall = document.getElementById('fabCall');

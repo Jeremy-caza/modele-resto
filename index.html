@@ -133,7 +133,20 @@
     .policy { font-size: 14px; color: var(--muted); display:flex; gap:10px; align-items: flex-start; }
 
     /* ====== Footer ====== */
-    footer { padding: 36px 0 90px; color: var(--muted); font-size:14px; }
+    footer { padding: 48px 0 110px; color: var(--ink); }
+.footer-head { text-align:center; margin-bottom: 20px; }
+.footer-head .logo { height: 44px; }
+.footer-head .slogan { font-family: var(--ff-head); letter-spacing: 3px; font-weight:600; color: var(--muted); text-transform: uppercase; }
+.footer-top { display:grid; grid-template-columns: 1fr; gap: 28px; justify-items:center; text-align:center; padding: 14px 0 22px; }
+@media (min-width: 900px){ .footer-top { grid-template-columns: 1fr 1fr 1fr; } }
+.footer-top .info { display:flex; flex-direction:column; align-items:center; gap: 10px; }
+.footer-top .ico { font-size: 30px; line-height: 1; background: var(--paper); width: 56px; height:56px; border-radius: 999px; display:grid; place-items:center; box-shadow: var(--shadow-1); color: var(--ink); }
+.footer-top .label { font-weight:800; letter-spacing: .5px; }
+.foot-sep { border: 0; border-top:1px solid var(--border); margin: 26px 0; }
+.footer-bottom { display:flex; align-items:center; justify-content:space-between; gap: 12px; flex-wrap:wrap; color: var(--muted); font-size:14px; }
+.socials { display:flex; align-items:center; gap: 12px; }
+.socials a { width: 38px; height: 38px; border-radius: 999px; display:grid; place-items:center; background: var(--ink); color:#fff; font-weight: 900; text-decoration:none; }
+.socials a:hover { transform: translateY(-1px); }
 
     /* ====== Bouton téléphone flottant (UberEats supprimé volontairement) ====== */
     .fab-call {
@@ -154,7 +167,7 @@
     <div class="nav-wrap">
       <a class="brand" href="#top" aria-label="Accueil">
         <!-- Remplacez src par votre logo -->
-        <img src="lasolina_fondclair.png" alt="Logo Pizzeria" onerror="this.style.display='none'">
+        <img src="photomenu/lasolina_fondclair.png" alt="Logo Pizzeria" onerror="this.style.display='none'">
         <span>PIZZERIA ARTISANALE</span>
       </a>
 
@@ -193,7 +206,7 @@
   <!-- =================== INTRO TEXTE =================== -->
   <section class="intro container" id="apropos">
     <div class="card">
-      <h2 style="font-family:var(--ff-head); font-weight:800; letter-spacing:.3px;">Une pizza chef ?</h2>
+      <h2 style="font-family:var(--ff-head); font-weight:800; letter-spacing:.3px;">Une pizza chez… ?</h2>
       <p>Au menu, plus de 40 pizzas artisanales salées et sucrées, des ingrédients soigneusement sélectionnés, une pâte fraîche pétrie tous les jours sur place, une sauce tomate maison, de l’amour, de la passion… En somme, notre pizzeria offre bien plus qu’une simple expérience culinaire : c’est une invitation à partager des moments gourmands empreints de convivialité et de bonheur.</p>
       <div class="block-cta">
         <a class="btn btn-primary" href="#menu">Découvrir le menu</a>
@@ -243,15 +256,44 @@
 
       <aside class="story-card">
         <p style="font-size:18px; margin-top:0;">Pour une soirée entre amis, un repas en famille ou simplement pour savourer l’une de nos délicieuses pizzas chez vous, nous vous promettons une expérience culinaire exceptionnelle et pleine de saveurs !</p>
-        <img src="DSC00809.jpg" alt="Part de pizza – illustration" style="border-radius: 16px; box-shadow: var(--shadow-1);">
+        <img src="photomenu/DSC00809.jpg" alt="Part de pizza – illustration" style="border-radius: 16px; box-shadow: var(--shadow-1);">
       </aside>
     </div>
   </section>
 
   <footer class="container">
-    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
-      <div>© <span id="year"></span> Votre Pizzeria – Tous droits réservés.</div>
-      <div><a href="#" style="text-decoration:underline;">Mentions légales</a></div>
+    <div class="footer-head">
+      <img src="photomenu/lasolina_fondclair.png" alt="Logo Pizzeria" class="logo" onerror="this.style.display='none'">
+      <div class="slogan">PIZZAS ARTISANALES</div>
+    </div>
+
+    <div class="footer-top">
+      <div class="info">
+        <div class="ico">🕒</div>
+        <div class="label" id="footHours">7j/7 de 18h à 22h</div>
+      </div>
+      <div class="info">
+        <div class="ico">📱</div>
+        <a class="label" id="footPhone" href="tel:+33000000000">05 62 51 70 17</a>
+      </div>
+      <div class="info">
+        <div class="ico">📍</div>
+        <div class="label" id="footCity">TARBES 65000</div>
+      </div>
+    </div>
+
+    <hr class="foot-sep">
+
+    <div class="footer-bottom">
+      <div class="socials">
+        <a id="fbLink" aria-label="Facebook">f</a>
+        <a id="igLink" aria-label="Instagram">ig</a>
+      </div>
+      <div class="links">
+        <a id="mentionsLink" href="#" style="text-decoration:underline;">Mentions légales</a>
+        <span> – </span>
+        <a id="privacyLink" href="#" style="text-decoration:underline;">Politique de confidentialité</a>
+      </div>
     </div>
   </footer>
 
@@ -262,6 +304,12 @@
   <script>
     // ===== CONFIG GLOBALE (MODIFIEZ ICI) =====
     const CONFIG = {
+      business: {
+        hours: "7j/7 de 18h à 22h",
+        city: "TARBES 65000",
+        socials: { facebook: "#", instagram: "#" },
+        legal: { mentions: "#", privacy: "#" }
+      },
       phone: "+33500000000",   // <— MODIFIEZ le numéro pour le bouton d'appel et le CTA Commander
       commanderTarget: "#contact", // ancre par défaut du bouton Commander
 
@@ -275,14 +323,11 @@
           { name: "La Reine", price: 11.50, desc: "Sauce tomate, olives, jambon, champignons, mozzarella. 33 cm.", note: "9,50€ en 29 cm" }
         ],
         "Classiques": [
-          { name: "La Campagnarde", price: 11.80, desc: "Sauce tomate, olives, lardons, persillade, crème fraîche, mozzarella. 33 cm.", note: "9,60€ en 29 cm" },
-          { name: "La Tropicale", price: 11.90, desc: "Sauce tomate, olives, jambon supérieur (100% porc français), ananas, crème fraîche, mozzarella. 33 cm.", note: "9,90€ en 29 cm" },
+          { name: "La Campagnarde", price: 11.80, desc: "Sauce tomate, olives, lardons, persillade, crème fraîche, mozzarella. 33 cm.", note: "9,70€ en 29 cm" },
+          { name: "La Tropicale", price: 11.90, desc: "Sauce tomate, olives, jambon supérieur (porc français), ananas, crème fraîche, mozzarella. 33 cm.", note: "9,70€ en 29 cm" },
           { name: "La Chèvre", price: 11.20, desc: "Sauce tomate, olives, chèvre, mozzarella. 33 cm.", note: "9,70€ en 29 cm" },
           { name: "La Beni Veggie", price: 11.50, desc: "Sauce tomate, olives, poivrons, champignons, cœurs d’artichauts, tomates, mozzarella. 33 cm.", note: "9,20€ en 29 cm" },
           { name: "La Chorizo", price: 11.50, desc: "Sauce tomate, olives, chorizo, oignons, poivrons, mozzarella. 33 cm.", note: "9,50€ en 29 cm" },
-          { name: "L’Orientale", price: 11.90, desc: "Sauce tomate, olives, merguez, oignons, poivrons, mozzarella. 33 cm.", note: "9,90€ en 29 cm" }
-          { name: "La Cal'z", price: 11.80, desc: "Sauce tomate, jambon supérieur (100% porc français), crème fraîche, œuf, mozzarella. 33 cm.", note: "9,90€ en 29 cm" }
-          { name: "La Fermière", price: 11.90, desc: "Sauce tomate, olives, jambon supérieur (100% porc français), œuf, crème fraîche, mozzarella. 33 cm.", note: "9,90€ en 29 cm" }
         ],
         "Gourmandes": [
           { name: "La Raclette", price: 12.90, desc: "Crème fraîche, pommes de terre, lardons, raclette, mozzarella." },
@@ -365,6 +410,21 @@
     fabCall.href = `tel:${CONFIG.phone}`;
     document.getElementById('btnCommanderTop').href = CONFIG.commanderTarget;
     document.getElementById('btnCommanderContact').href = `tel:${CONFIG.phone}`;
+
+    // ===== Footer bindings =====
+    const $ = (id) => document.getElementById(id);
+    const biz = CONFIG.business || {};
+    if ($('footHours')) $('footHours').textContent = biz.hours || '';
+    if ($('footCity')) $('footCity').textContent = biz.city || '';
+    if ($('footPhone')) {
+      const display = (CONFIG.phoneDisplay || '').trim();
+      $('footPhone').textContent = display || (CONFIG.phone || '').replace(/^\+33/, '0');
+      $('footPhone').href = `tel:${CONFIG.phone}`;
+    }
+    if ($('fbLink')) $('fbLink').href = (biz.socials && biz.socials.facebook) || '#';
+    if ($('igLink')) $('igLink').href = (biz.socials && biz.socials.instagram) || '#';
+    if ($('mentionsLink')) $('mentionsLink').href = (biz.legal && biz.legal.mentions) || '#';
+    if ($('privacyLink')) $('privacyLink').href = (biz.legal && biz.legal.privacy) || '#';
 
     // ===== Init =====
     renderTabs();

@@ -1,202 +1,376 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pizzeria Artisanale</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pizzeria Artisanale – Démo</title>
+  <!-- POLICES (modifiables) -->
+  <!-- Pour changer : remplacez les familles ci-dessous ou ajoutez-en -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <!-- Polices Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* === COULEURS (modifiez ici) === */
+      --bg: #f4f1ea;            /* fond général beige */
+      --paper: #faf7f0;         /* panneaux/menus */
+      --ink: #0e3555;           /* bleu nuit texte */
+      --muted: #6b7a86;         /* texte secondaire */
+      --accent: #e86b66;        /* corail principal */
+      --accent-2: #c8504a;      /* corail foncé */
+      --border: #e3dfd6;        /* filets */
+      --white: #ffffff;
 
-  <!-- Feuille de style -->
-  <link rel="stylesheet" href="style.css" />
+      /* === TYPO (modifiez ici) === */
+      --ff-head: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial, sans-serif;
+      --ff-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial, sans-serif;
+
+      /* === DIMENSIONS === */
+      --maxw: 1200px;
+      --radius-xl: 28px;
+      --radius: 16px;
+      --shadow-1: 0 6px 18px rgba(14, 53, 85, .06);
+      --shadow-2: 0 14px 36px rgba(14, 53, 85, .10);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--ink); background: var(--bg);
+      font-family: var(--ff-body); line-height: 1.6; font-size: 16px;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    .container { max-width: var(--maxw); margin-inline: auto; padding-inline: 20px; }
+
+    /* ====== Header ====== */
+    header {
+      position: sticky; top: 12px; z-index: 50;
+    }
+    .nav-wrap {
+      background: var(--paper); border-radius: 999px; box-shadow: var(--shadow-1);
+      padding: 10px 18px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.5px; }
+    .brand img { width: 140px; height:auto; }
+
+    nav { display:flex; align-items:center; gap:28px; font-weight:600; }
+    nav a { opacity:.9; }
+    nav a:hover, nav a.active { opacity:1; color: var(--accent-2); }
+
+    .cta-platforms { display:flex; align-items:center; gap:12px; }
+    .cta-platforms .pill { background: var(--accent); color: var(--white); font-weight:800; padding:8px 12px; border-radius: 16px; filter: drop-shadow(0 6px 10px rgba(232,107,102,.25)); }
+
+    /* Burger mobile */
+    .burger { display:none; width:42px; height:42px; border-radius: 10px; border:1px solid var(--border); background: var(--white); align-items:center; justify-content:center; }
+    .burger span { width:22px; height:2px; background:var(--ink); position:relative; display:block; }
+    .burger span::before, .burger span::after { content:""; position:absolute; left:0; right:0; height:2px; background:var(--ink); }
+    .burger span::before { top:-7px; } .burger span::after { top:7px; }
+
+    .mobile-menu { display:none; position: absolute; left:0; right:0; top:62px; background:var(--paper); border-radius: 20px; box-shadow: var(--shadow-2); padding:16px; }
+    .mobile-menu a { display:block; padding:12px 8px; font-weight:600; border-radius:10px; }
+    .mobile-menu a:active { background:#00000008; }
+
+    /* ====== Hero ====== */
+    .hero { padding: 100px 0 40px; position: relative; overflow: hidden; }
+    .display {
+      font-family: var(--ff-head); font-weight:900; line-height: .95; letter-spacing:.3px;
+      font-size: clamp(48px, 8vw, 112px); text-transform: uppercase;
+      color: var(--accent); position: relative;
+      text-shadow: 0.18em 0.18em 0 var(--ink); /* effet ombre portée épaisse */
+    }
+    .subtitle { font-size: clamp(22px, 3vw, 44px); color: var(--ink); opacity:.9; margin-top: 18px; }
+
+    .hero-cta { margin-top: 28px; display:flex; gap:14px; flex-wrap: wrap; }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:14px 22px; font-weight:800; border-radius: 14px; cursor:pointer;
+      transition:.2s transform ease, .2s box-shadow ease; border:2px solid transparent;
+    }
+    .btn-primary { background: var(--ink); color: var(--white); box-shadow: var(--shadow-2); }
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-ghost { background: transparent; border-color: var(--ink); color: var(--ink); }
+
+    /* ====== Texte intro ====== */
+    .intro { padding: 30px 0 10px; }
+    .intro .card { background: var(--paper); padding: 30px; border-radius: var(--radius-xl); box-shadow: var(--shadow-1); }
+    .intro p { margin:0 0 12px; color:#223f5a; font-size: clamp(16px, 2vw, 18px); }
+
+    /* ====== Tabs Menu ====== */
+    .tabs { margin-top: 40px; border-top:1px solid var(--border); border-bottom:1px solid var(--border); overflow:auto; }
+    .tablist { display:flex; gap:28px; padding:22px 6px; min-width: max-content; }
+    .tablist button {
+      appearance:none; background:#0000; border:0; font-weight:800; font-family: var(--ff-head); font-size: clamp(16px, 2.4vw, 22px);
+      color: var(--ink); padding:12px 18px; border-radius: 12px; cursor:pointer; opacity:.85;
+    }
+    .tablist button[aria-selected="true"] { background: var(--accent); color: var(--white); box-shadow: 0 8px 18px rgba(232,107,102,.25); opacity:1; }
+
+    /* ====== Liste pizzas ====== */
+    .menu-section { padding: 18px 0 10px; }
+    .grid { display:grid; grid-template-columns: 1fr; gap: 28px; }
+    @media (min-width: 860px) { .grid { grid-template-columns: 1fr 1fr; } }
+
+    .item { padding: 18px 0; border-bottom:1px dashed #d9d5cc; }
+    .item h4 { margin:0 0 6px; font-family: var(--ff-head); font-weight:800; letter-spacing:.2px; }
+    .item .price { font-weight:800; color: var(--accent-2); float:right; margin-left: 10px; }
+    .item p { margin:0; color: var(--muted); }
+
+    /* CTA entre sections */
+    .block-cta { display:flex; justify-content:center; padding: 36px 0 20px; }
+
+    /* ====== Contact ====== */
+    #contact { padding: 70px 0; }
+    .contact-wrap { display:grid; gap: 30px; grid-template-columns: 1fr; }
+    @media (min-width: 980px) { .contact-wrap { grid-template-columns: 1.1fr .9fr; align-items: start; } }
+
+    .form-card, .story-card { background: var(--paper); border-radius: var(--radius-xl); padding: 26px; box-shadow: var(--shadow-1); }
+    .form-row { display:grid; grid-template-columns: 1fr; gap:12px; }
+    @media (min-width: 640px) { .form-row.two { grid-template-columns: 1fr 1fr; } }
+    label { font-weight:600; font-size: 14px; }
+    input, textarea { width: 100%; padding: 12px 14px; border-radius: 12px; border:1px solid var(--border); outline:none; background: #fff; font-family: var(--ff-body); }
+    textarea { min-height: 140px; resize: vertical; }
+
+    .policy { font-size: 14px; color: var(--muted); display:flex; gap:10px; align-items: flex-start; }
+
+    /* ====== Footer ====== */
+    footer { padding: 36px 0 90px; color: var(--muted); font-size:14px; }
+
+    /* ====== Bouton téléphone flottant (UberEats supprimé volontairement) ====== */
+    .fab-call {
+      position: fixed; right: 18px; bottom: 18px; z-index: 60;
+      width: 60px; height: 60px; border-radius: 999px; display:grid; place-items:center;
+      background: var(--accent); color:#fff; box-shadow: 0 14px 28px rgba(232,107,102,.35);
+      font-weight: 900; font-size: 22px; line-height: 1; text-decoration: none;
+    }
+    .fab-call:hover { transform: translateY(-2px); }
+
+    /* ====== Utilitaires ====== */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  </style>
 </head>
 <body>
+  <!-- =================== HEADER =================== -->
+  <header class="container">
+    <div class="nav-wrap">
+      <a class="brand" href="#top" aria-label="Accueil">
+        <!-- Remplacez src par votre logo -->
+        <img src="logo-placeholder.svg" alt="Logo Pizzeria" onerror="this.style.display='none'">
+        <span>PIZZERIA ARTISANALE</span>
+      </a>
 
-  <!-- Navigation -->
-  <header class="header">
-    <div class="container">
-      <div class="logo">
-        <img src="images/logo.png" alt="Logo Pizzeria" />
-        <span>PIZZAS ARTISANALES</span>
-      </div>
-      <nav class="navbar">
-        <a href="#accueil">Accueil</a>
-        <a href="#apropos">À propos</a>
+      <nav class="desktop-nav">
+        <a href="#top" class="active">Accueil</a>
+        <a href="#apropos">A propos</a>
         <a href="#menu">Menu</a>
         <a href="#contact">Contact</a>
       </nav>
-      <div class="uber-link">
-        <a href="#"><img src="images/ubereats.png" alt="Commander sur Uber Eats" /></a>
+
+      <!-- Bouton burger pour mobile -->
+      <button class="burger" id="burger" aria-label="Ouvrir le menu"><span></span></button>
+
+      <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu">
+        <a href="#top">Accueil</a>
+        <a href="#apropos">A propos</a>
+        <a href="#menu">Menu</a>
+        <a href="#contact">Contact</a>
       </div>
+
+      <!-- Bouton UberEats supprimé selon votre demande -->
+      <!-- <div class="cta-platforms"><span class="pill">UberEats</span></div> -->
     </div>
   </header>
 
-  <!-- Section Hero -->
-  <section class="hero" id="accueil">
-    <div class="hero-content">
-      <h1>VOTRE<br>PIZZERIA</h1>
-      <p>Artisanale à Tarbes</p>
-      <div class="hero-icons">
-        <span class="dot beige"></span>
-        <span class="dot bleu"></span>
-        <span class="dot rouge"></span>
-      </div>
-    </div>
-    <div class="hero-call">
-      <a href="tel:+33562517017" class="call-btn"><img src="images/call-icon.png" alt="Appeler" /></a>
-      <a href="#"><img src="images/ubereats.png" alt="Uber Eats" class="ubereats-btn" /></a>
+  <!-- =================== HERO =================== -->
+  <section class="hero container" id="top">
+    <h1 class="display">Votre<br/>Pizzeria</h1>
+    <p class="subtitle">Artisanale à Tarbes</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#menu">Voir le menu</a>
+      <a class="btn btn-ghost" id="btnCommanderTop" href="#contact">Commander</a>
     </div>
   </section>
 
-    <!-- Image pizza floue en fond -->
-  <div class="pizza-bg">
-    <img src="images/pizza-bg.jpg" alt="Pizza artisanale" />
-  </div>
-
-  <!-- Section promotionnelle -->
-  <section class="promo">
-    <div class="promo-content">
-      <div class="promo-images">
-        <img src="images/skate-livreur.jpg" alt="Livreur skate" class="photo-skate" />
-        <img src="images/pizza-table.jpg" alt="Pizza sur table" class="photo-pizza" />
-      </div>
-      <div class="promo-text">
-        <h2>UNE<br>PIZZA<br>CHEF&nbsp;?</h2>
+  <!-- =================== INTRO TEXTE =================== -->
+  <section class="intro container" id="apropos">
+    <div class="card">
+      <h2 style="font-family:var(--ff-head); font-weight:800; letter-spacing:.3px;">Une pizza chez… ?</h2>
+      <p>Au menu, plus de 40 pizzas artisanales salées et sucrées, des ingrédients soigneusement sélectionnés, une pâte fraîche pétrie tous les jours sur place, une sauce tomate maison, de l’amour, de la passion… En somme, notre pizzeria offre bien plus qu’une simple expérience culinaire : c’est une invitation à partager des moments gourmands empreints de convivialité et de bonheur.</p>
+      <div class="block-cta">
+        <a class="btn btn-primary" href="#menu">Découvrir le menu</a>
       </div>
     </div>
   </section>
 
-  <!-- Section présentation -->
-  <section class="presentation" id="apropos">
-    <div class="container">
-      <p>
-        Au menu, plus de 40 pizzas artisanales salées et sucrées,<br>
-        des ingrédients soigneusement sélectionnés, une pâte<br>
-        fraîche pétrie tous les jours sur place, une sauce tomate<br>
-        maison, de l’amour, de la passion…<br><br>
-        En somme, La Solina offre bien plus qu’une simple expérience<br>
-        culinaire, c’est une invitation à partager des moments<br>
-        gourmands empreints de convivialité et de bonheur.
-      </p>
-      <a href="#menu" class="btn-dark">Commander</a>
+  <!-- =================== MENU (onglets) =================== -->
+  <section class="container" id="menu">
+    <div class="tabs">
+      <div class="tablist" id="tablist" role="tablist" aria-label="Catégories du menu"><!-- onglets injectés par JS --></div>
+    </div>
+
+    <div id="menuContent" class="menu-section">
+      <!-- contenu rendu par JS -->
+    </div>
+
+    <div class="block-cta">
+      <a class="btn" style="background:var(--accent); color:#fff;" href="#contact">Commander</a>
     </div>
   </section>
 
-    <!-- Section Menu -->
-  <section class="menu-section" id="menu">
-    <div class="container">
-      <div class="menu-categories">
-        <button class="category-btn active" data-category="basique">Basiques</button>
-        <button class="category-btn" data-category="classique">Classiques</button>
-        <button class="category-btn" data-category="gourmande">Gourmandes</button>
-        <button class="category-btn" data-category="speciale">Spéciales</button>
-        <button class="category-btn" data-category="bambino">Bambino</button>
-        <button class="category-btn" data-category="dessert">Desserts & Boissons</button>
-      </div>
-
-      <!-- Pizzas - Basiques -->
-      <div class="menu-list active" id="basique">
-        <div class="menu-item">
-          <h3>LA FROMAGE</h3>
-          <p>Sauce tomate (tomates 100% italiennes), olives, mozzarella, emmental fondu. Pizza de 33cm et <strong>6,60€</strong> pour une pizza de 29cm.</p>
-          <span class="price">7,70€</span>
+  <!-- =================== CONTACT =================== -->
+  <section id="contact" class="container">
+    <div class="contact-wrap">
+      <form class="form-card" onsubmit="event.preventDefault(); alert('Merci ! Votre message a bien été préparé (démo).');">
+        <h2 style="font-family:var(--ff-head); font-weight:900;">Nous contacter</h2>
+        <div class="form-row two">
+          <div><label for="nom">Nom</label><input id="nom" name="nom" required></div>
+          <div><label for="prenom">Prénom</label><input id="prenom" name="prenom"></div>
         </div>
-        <div class="menu-item">
-          <h3>LA JAMBON</h3>
-          <p>Sauce tomate, olives, jambon supérieur, mozzarella. 33cm et <strong>8,60€</strong> pour 29cm.</p>
-          <span class="price">9,90€</span>
+        <div class="form-row">
+          <div><label for="tel">Téléphone</label><input id="tel" name="tel" inputmode="tel" placeholder="06 12 34 56 78"></div>
         </div>
-        <div class="menu-item">
-          <h3>LA PROVENÇALE</h3>
-          <p>Sauce tomate, tomates cerises, persillade, herbes de Provence, mozzarella. 33cm et <strong>7,50€</strong> pour 29cm.</p>
-          <span class="price">8,90€</span>
+        <div class="form-row">
+          <div><label for="email">Adresse e‑mail</label><input id="email" name="email" type="email" placeholder="vous@exemple.fr"></div>
         </div>
-        <div class="menu-item">
-          <h3>LA REINE</h3>
-          <p>Sauce tomate, jambon supérieur, champignons, mozzarella. 33cm et <strong>9,50€</strong> pour 29cm.</p>
-          <span class="price">11,50€</span>
+        <div class="form-row">
+          <div><label for="msg">Message</label><textarea id="msg" name="msg" placeholder="Votre demande…"></textarea></div>
         </div>
-      </div>
-
-      <!-- Pizzas - Gourmandes (extrait seulement ici pour raccourcir) -->
-      <div class="menu-list" id="gourmande">
-        <div class="menu-item">
-          <h3>LA 4 FROMAGES</h3>
-          <p>Sauce tomate, olives, roquefort, parmesan, emmental fondu, mozzarella. 33cm et <strong>10,80€</strong> pour 29cm.</p>
-          <span class="price">12,90€</span>
+        <label class="policy"><input type="checkbox" required> <span>En cochant cette case, vous reconnaissez avoir pris connaissance et accepté notre politique de confidentialité.</span></label>
+        <div style="margin-top:14px; display:flex; gap:12px; flex-wrap:wrap;">
+          <button class="btn btn-primary" type="submit">Envoyer</button>
+          <a class="btn btn-ghost" id="btnCommanderContact" href="#">Commander</a>
         </div>
-        <div class="menu-item">
-          <h3>LA SAVOYARDE</h3>
-          <p>Sauce tomate, pommes de terre, lardons, reblochon, crème, mozzarella. 33cm et <strong>12,90€</strong> pour 29cm.</p>
-          <span class="price">14,90€</span>
-        </div>
-        <!-- ... autres pizzas à ajouter ici -->
-      </div>
-
-      <!-- Les autres catégories suivront aussi -->
-    </div>
-  </section>
-
-    <!-- Section Contact -->
-  <section class="contact-section" id="contact">
-    <div class="container contact-container">
-      <form class="contact-form">
-        <input type="text" placeholder="Téléphone" required />
-        <input type="email" placeholder="Adresse e-mail" required />
-        <textarea placeholder="Message" required></textarea>
-        <div class="checkbox-wrapper">
-          <label>
-            <input type="checkbox" required />
-            En cochant cette case, vous reconnaissez avoir pris connaissance<br />
-            et accepté notre politique de confidentialité.
-          </label>
-        </div>
-        <button type="submit" class="btn-submit">ENVOYER</button>
       </form>
 
-      <div class="contact-text">
-        <h2>CONTACTER</h2>
-        <p>
-          Pour une soirée entre amis, un repas en famille ou simplement pour savourer l’une de nos délicieuses pizzas chez vous, La Solina vous promet une expérience culinaire exceptionnelle et pleine de saveurs !
-        </p>
-        <a href="#menu" class="btn-light">Commander</a>
-      </div>
+      <aside class="story-card">
+        <p style="font-size:18px; margin-top:0;">Pour une soirée entre amis, un repas en famille ou simplement pour savourer l’une de nos délicieuses pizzas chez vous, nous vous promettons une expérience culinaire exceptionnelle et pleine de saveurs !</p>
+        <img src="pizza-hero.jpg" alt="Part de pizza – illustration" style="border-radius: 16px; box-shadow: var(--shadow-1);">
+      </aside>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container footer-container">
-      <div class="footer-logo">
-        <img src="images/logo.png" alt="Logo" />
-        <p>PIZZAS ARTISANALES</p>
-      </div>
-      <div class="footer-infos">
-        <div class="footer-item">
-          <img src="images/clock.png" alt="Horaires" />
-          <span>7J/7 DE 18H À 22H</span>
-        </div>
-        <div class="footer-item">
-          <img src="images/phone.png" alt="Téléphone" />
-          <span>05 62 51 70 17</span>
-        </div>
-        <div class="footer-item">
-          <img src="images/location.png" alt="Adresse" />
-          <span>TARBES 65000</span>
-        </div>
-      </div>
-      <div class="footer-socials">
-        <a href="#"><img src="images/facebook.png" alt="Facebook" /></a>
-        <a href="#"><img src="images/instagram.png" alt="Instagram" /></a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>Copyright © 2023 – Proudly made by Break-Out Company</p>
-      <a href="#">Mentions légales</a> – <a href="#">Politique de confidentialité</a>
+  <footer class="container">
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+      <div>© <span id="year"></span> Votre Pizzeria – Tous droits réservés.</div>
+      <div><a href="#" style="text-decoration:underline;">Mentions légales</a></div>
     </div>
   </footer>
-  
-<script src="script.js"></script>
+
+  <!-- Bouton téléphone flottant (modifiez le numéro dans CONFIG ci-dessous) -->
+  <a class="fab-call" id="fabCall" href="tel:+33000000000" aria-label="Appeler">☎</a>
+
+  <!-- =================== SCRIPTS =================== -->
+  <script>
+    // ===== CONFIG GLOBALE (MODIFIEZ ICI) =====
+    const CONFIG = {
+      phone: "+33500000000",   // <— MODIFIEZ le numéro pour le bouton d'appel et le CTA Commander
+      commanderTarget: "#contact", // ancre par défaut du bouton Commander
+
+      // === MENU : modifiez/ajoutez vos catégories et pizzas ici ===
+      // Astuce : titres, prix et ingrédients sont intégralement éditables.
+      menu: {
+        "Basiques": [
+          { name: "La Fromage", price: 7.70, desc: "Sauce tomate, olives, mozzarella, emmental fondu. 33 cm.", note: "6,60€ en 29 cm" },
+          { name: "La Provençale", price: 8.90, desc: "Sauce tomate, olives, tomates cerises, persillade, herbes de Provence, mozzarella. 33 cm.", note: "7,50€ en 29 cm" },
+          { name: "La Jambon", price: 9.90, desc: "Sauce tomate, olives, jambon supérieur (porc français), mozzarella. 33 cm.", note: "8,60€ en 29 cm" },
+          { name: "La Reine", price: 11.50, desc: "Sauce tomate, olives, jambon, champignons, mozzarella. 33 cm.", note: "9,50€ en 29 cm" }
+        ],
+        "Classiques": [
+          { name: "La Campagnarde", price: 11.80, desc: "Sauce tomate, olives, lardons, persillade, crème fraîche, mozzarella. 33 cm.", note: "9,60€ en 29 cm" },
+          { name: "La Tropicale", price: 11.90, desc: "Sauce tomate, olives, jambon supérieur (100% porc français), ananas, crème fraîche, mozzarella. 33 cm.", note: "9,90€ en 29 cm" },
+          { name: "La Chèvre", price: 11.20, desc: "Sauce tomate, olives, chèvre, mozzarella. 33 cm.", note: "9,70€ en 29 cm" },
+          { name: "La Beni Veggie", price: 11.50, desc: "Sauce tomate, olives, poivrons, champignons, cœurs d’artichauts, tomates, mozzarella. 33 cm.", note: "9,20€ en 29 cm" },
+          { name: "La Chorizo", price: 11.50, desc: "Sauce tomate, olives, chorizo, oignons, poivrons, mozzarella. 33 cm.", note: "9,50€ en 29 cm" },
+          { name: "L’Orientale", price: 11.90, desc: "Sauce tomate, olives, merguez, oignons, poivrons, mozzarella. 33 cm.", note: "9,90€ en 29 cm" }
+          { name: "La Cal'z", price: 11.80, desc: "Sauce tomate, jambon supérieur (100% porc français), crème fraîche, œuf, mozzarella. 33 cm.", note: "9,90€ en 29 cm" }
+          { name: "La Fermière", price: 11.90, desc: "Sauce tomate, olives, jambon supérieur (100% porc français), œuf, crème fraîche, mozzarella. 33 cm.", note: "9,90€ en 29 cm" }
+        ],
+        "Gourmandes": [
+          { name: "La Raclette", price: 12.90, desc: "Crème fraîche, pommes de terre, lardons, raclette, mozzarella." },
+          { name: "La 4 Fromages", price: 12.50, desc: "Crème fraîche, mozzarella, gorgonzola, emmental, parmesan." }
+        ],
+        "Spéciales": [
+          { name: "La Truffe", price: 14.90, desc: "Crème de truffe, champignons, mozzarella, roquette." }
+        ],
+        "Bambino": [
+          { name: "Margherita Bambino", price: 6.90, desc: "Tomate, mozzarella – format enfant." }
+        ],
+        "Desserts & Boissons": [
+          { name: "Tiramisu maison", price: 4.50, desc: "Classique, spéculoos ou pistache (selon arrivage)." },
+          { name: "Boisson 33cl", price: 2.50, desc: "Cola, limonade, thé glacé…" }
+        ]
+      }
+    };
+
+    // ===== UTILITAIRES =====
+    const euro = n => (n).toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "€";
+
+    const tablist = document.getElementById('tablist');
+    const menuContent = document.getElementById('menuContent');
+
+    function renderTabs() {
+      const cats = Object.keys(CONFIG.menu);
+      tablist.innerHTML = cats.map((c, i) => `
+        <button role="tab" aria-selected="${i===0}" aria-controls="panel-${i}" id="tab-${i}" data-index="${i}">${c}</button>
+      `).join('');
+      tablist.addEventListener('click', (e) => {
+        if(e.target.matches('button[role="tab"]')) {
+          const i = Number(e.target.dataset.index);
+          selectTab(i);
+        }
+      });
+    }
+
+    function renderPanel(index) {
+      const cats = Object.keys(CONFIG.menu);
+      const cat = cats[index];
+      const items = CONFIG.menu[cat];
+      const html = `
+        <div id="panel-${index}" role="tabpanel" aria-labelledby="tab-${index}">
+          <div class="grid">
+            ${items.map(it => `
+              <article class="item">
+                <h4>${it.name} <span class="price">${euro(it.price)}</span></h4>
+                <p>${it.desc || ''}</p>
+                ${it.note ? `<p style="font-size:14px; color:#9aa3ab; margin-top:6px;">${it.note}</p>` : ''}
+              </article>
+            `).join('')}
+          </div>
+        </div>`;
+      menuContent.innerHTML = html;
+    }
+
+    function selectTab(index) {
+      for (const b of tablist.querySelectorAll('button')) b.setAttribute('aria-selected', 'false');
+      tablist.querySelector(`[data-index="${index}"]`).setAttribute('aria-selected', 'true');
+      renderPanel(index);
+    }
+
+    // ===== Navigation active au scroll =====
+    const navLinks = [...document.querySelectorAll('.desktop-nav a'), ...document.querySelectorAll('#mobileMenu a')];
+    function setActive(hash) {
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === hash));
+    }
+    window.addEventListener('hashchange', () => setActive(location.hash||'#top'));
+
+    // ===== Burger mobile =====
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    burger.addEventListener('click', () => {
+      mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+    });
+    mobileMenu.addEventListener('click', () => mobileMenu.style.display = 'none');
+
+    // ===== Commander + bouton téléphone =====
+    const fabCall = document.getElementById('fabCall');
+    fabCall.href = `tel:${CONFIG.phone}`;
+    document.getElementById('btnCommanderTop').href = CONFIG.commanderTarget;
+    document.getElementById('btnCommanderContact').href = `tel:${CONFIG.phone}`;
+
+    // ===== Init =====
+    renderTabs();
+    selectTab(0);
+    setActive('#top');
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

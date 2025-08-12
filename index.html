@@ -281,7 +281,7 @@
       </form>
       <aside class="story-card">
         <p style="font-size:18px; margin-top:0;">Pour une soirée entre amis, un repas en famille ou simplement pour savourer l’une de nos délicieuses pizzas chez vous, nous vous promettons une expérience culinaire exceptionnelle et pleine de saveurs !</p>
-        <img src="photomenu/DCS00809.jpg" alt="Part de pizza – illustration" style="border-radius: 16px; box-shadow: var(--shadow-1);">
+        <img src="photomenu/DSC00809.jpg" alt="Part de pizza – illustration" style="border-radius: 16px; box-shadow: var(--shadow-1);">
       </aside>
     </div>
   </section>
@@ -458,10 +458,15 @@
     window.addEventListener('resize', () => { if (window.innerWidth > 900) mobileMenu.style.display = 'none'; });
 
     // ===== Commander + bouton téléphone =====
-    const fabCall = document.getElementById('fabCall');
-    fabCall.href = `tel:${CONFIG.phone}`;
-    document.getElementById('btnCommanderTop').href = CONFIG.commanderTarget;
-    document.getElementById('btnCommanderContact').href = `tel:${CONFIG.phone}`;
+const fabCall = document.getElementById('fabCall');
+if (fabCall) fabCall.href = `tel:${CONFIG.phone}`;
+
+const commanderTop = document.getElementById('btnCommanderTop');
+if (commanderTop) commanderTop.href = CONFIG.commanderTarget;
+
+const commanderContact = document.getElementById('btnCommanderContact');
+if (commanderContact) commanderContact.href = `tel:${CONFIG.phone}`;
+
 
     // ===== Footer bindings =====
     const $ = (id) => document.getElementById(id);

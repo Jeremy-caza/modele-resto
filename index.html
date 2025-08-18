@@ -3,152 +3,161 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pizzeria Artisanale – Démo</title>
-  <!-- POLICES (modifiables) -->
-  <!-- Pour changer : remplacez les familles ci-dessous ou ajoutez-en -->
+  <title>Pizzeria Artisanale – Démo (modèle renforcé)</title>
+
+  <!-- =================== POLICES =================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <!-- ICONS / FAVICONS -->
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
-  <link rel="icon" href="favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <link rel="manifest" href="site.webmanifest">
-  <meta name="msapplication-TileColor" content="#000000">
-  <meta name="msapplication-config" content="browserconfig.xml">
-  <meta name="theme-color" content="#000000">
-  
+  <!-- ================== ICONS / FAVICONS ================== -->
+  <!-- Dépose tes fichiers dans images/ (ou modifie les chemins) -->
+  <link rel="icon" href="images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="manifest" href="images/site.webmanifest">
+  <meta name="theme-color" content="#0f172a">
+
   <style>
     :root {
-      /* === COULEURS (modifiez ici) === */
-      --bg: #f4f1ea;            /* fond général beige */
-      --paper: #faf7f0;         /* panneaux/menus */
-      --ink: #0e3555;           /* bleu nuit texte */
-      --muted: #6b7a86;         /* texte secondaire */
-      --accent: #e86b66;        /* corail principal */
-      --accent-2: #c8504a;      /* corail foncé */
-      --border: #e3dfd6;        /* filets */
+      /* ========== COULEURS (gris / blanc / bleu + texte noir) ========== */
+      --bg: #ffffff;        /* fond général */
+      --paper: #f8fafc;     /* panneaux/menus */
+      --ink: #111111;       /* texte principal (noir) */
+      --muted: #64748b;     /* texte secondaire */
+      --accent: #1e40af;    /* bleu action (boutons actifs) */
+      --accent-2: #1e3a8a;  /* bleu foncé */
+      --border: #e5e7eb;    /* filets */
       --white: #ffffff;
 
-      /* === TYPO (modifiez ici) === */
+      /* ========== TYPO ========== */
       --ff-head: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial, sans-serif;
       --ff-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial, sans-serif;
 
-      /* === DIMENSIONS === */
+      /* ========== DIMENSIONS ========== */
       --maxw: 1200px;
       --radius-xl: 28px;
       --radius: 16px;
-      --shadow-1: 0 6px 18px rgba(14, 53, 85, .06);
-      --shadow-2: 0 14px 36px rgba(14, 53, 85, .10);
+      --shadow-1: 0 6px 18px rgba(2, 6, 23, .06);
+      --shadow-2: 0 14px 36px rgba(2, 6, 23, .12);
+
+      /* ========== NAVBAR STABLE ========== */
+      --nav-h: 64px;          /* hauteur fixe de la barre */
+      --nav-pad: 10px;        /* padding vertical interne de .nav-wrap */
+      --logo-max-h: calc(var(--nav-h) - var(--nav-pad)*2); /* hauteur maximale du logo */
     }
 
-    * { box-sizing: border-box; }
+    /* ========== RESET SOLIDE ========== */
+    *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
     body {
       margin: 0; color: var(--ink); background: var(--bg);
-      font-family: var(--ff-body); line-height: 1.6; font-size: 16px;
+      font-family: var(--ff-body); line-height: 1.6; font-size: 16px; overflow-x: hidden;
     }
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; height: auto; display: block; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
 
     .container { max-width: var(--maxw); margin-inline: auto; padding-inline: 20px; }
+    .sr-only { position: absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip: rect(0,0,0,0); white-space:nowrap; border:0; }
 
-    /* ====== Header ====== */
-    header {
-      position: sticky; top: 12px; z-index: 50;
-    }
+    /* =============================================================
+       HEADER : barre stable + logo qui s'adapte (la barre ne bouge pas)
+       ============================================================= */
+    header { position: sticky; top: 0; z-index: 50; padding-top: 12px; background: linear-gradient(#ffffff 0, #ffffff00 100%); }
     .nav-wrap {
       background: var(--paper); border-radius: 999px; box-shadow: var(--shadow-1);
-      padding: 10px 18px; display: flex; align-items: center; justify-content: space-between;
-      position: relative;
+      padding: var(--nav-pad) 18px; display: flex; align-items: center; justify-content: space-between;
+      min-height: var(--nav-h);
     }
-    .brand { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.5px; }
-    .brand img { width: 140px; height:auto; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.5px; min-width:0; }
+    /* Logo adaptable : hauteur max contrôlée par --logo-max-h */
+    .brand img { max-height: var(--logo-max-h); width: auto; height: auto; object-fit: contain; }
+    .brand span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
     nav { display:flex; align-items:center; gap:28px; font-weight:600; }
     nav a { opacity:.9; }
     nav a:hover, nav a.active { opacity:1; color: var(--accent-2); }
 
-    .cta-platforms { display:flex; align-items:center; gap:12px; }
-    .cta-platforms .pill { background: var(--accent); color: var(--white); font-weight:800; padding:8px 12px; border-radius: 16px; filter: drop-shadow(0 6px 10px rgba(232,107,102,.25)); }
-
-    /* Burger mobile */
+    /* Burger + menu mobile */
     .burger { display:none; width:42px; height:42px; border-radius: 10px; border:1px solid var(--border); background: var(--white); align-items:center; justify-content:center; }
     .burger span { width:22px; height:2px; background:var(--ink); position:relative; display:block; }
     .burger span::before, .burger span::after { content:""; position:absolute; left:0; right:0; height:2px; background:var(--ink); }
     .burger span::before { top:-7px; } .burger span::after { top:7px; }
 
-    .mobile-menu { display:none; position: absolute; left:0; right:0; top:62px; background:var(--paper); border-radius: 20px; box-shadow: var(--shadow-2); padding:16px; }
+    .mobile-menu { display:none; position: absolute; left:0; right:0; top: calc(var(--nav-h) + 12px); background:var(--paper); border-radius: 20px; box-shadow: var(--shadow-2); padding:16px; }
     .mobile-menu a { display:block; padding:12px 8px; font-weight:600; border-radius:10px; }
     .mobile-menu a:active { background:#00000008; }
 
-    /* ====== Mobile tweaks ====== */
+    /* Backdrop pour clic extérieur + lock scroll */
+    .backdrop { position: fixed; inset: 0; background: rgba(15, 23, 42, .32); display: none; z-index: 40; }
+    body.menu-open { overflow: hidden; }
+
+    /* =================== Mobile tweaks =================== */
     @media (max-width: 900px) {
       html, body { overflow-x: hidden; }
       .container { padding-inline: 14px; }
-      .nav-wrap { padding: 8px 12px; }
+      .nav-wrap { padding-inline: 12px; }
       .desktop-nav { display: none; }
       .burger { display: inline-grid; }
-      .brand img { width: 120px; }
       .brand span { display: none; } /* évite le chevauchement du libellé avec la nav */
-      .mobile-menu { top: 56px; }
     }
 
-    /* Offset d’ancrage pour la barre sticky */
-    #top, #apropos, #menu, #contact { scroll-margin-top: 90px; }
+    /* ==== Offset d’ancrage pour la barre sticky (fallback sans JS) ==== */
+    #top, #apropos, #menu, #contact { scroll-margin-top: calc(var(--nav-h) + 20px); }
 
-    /* ====== Hero ====== */
+    /* =================== HERO =================== */
     .hero { padding: 100px 0 40px; position: relative; overflow: hidden; }
-    
-    /* ===== Section backgrounds (full-bleed) ===== */
+    /* arrière-plan plein écran optionnel via custom properties inline */
     .bg-bleed { position: relative; }
     .bg-bleed::before {
-      content:""; position:absolute; z-index:-1;
-      left:50%; top:0; width:100vw; height:100%;
-      transform:translateX(-50%);
-      background: var(--bg-img) center/cover no-repeat;
-      opacity: var(--bg-opacity, .18);
-      filter: var(--bg-filter, none);
-    }
+      content:""; position:absolute; z-index:-1; left:50%; top:0; width:100vw; height:100%; transform:translateX(-50%);
+      background: var(--bg-img) center/cover no-repeat; opacity: var(--bg-opacity, .18)}
+
+/* Décalage horizontal doux du contenu du hero */
+:root{--hero-offset-x: clamp(12px, 4vw, 56px); /* ajuste ici si tu veux plus/moins de décalage */}
+.hero{ text-align:left; } /* on force l’alignement à gauche du texte */
+.hero .display,
+.hero .subtitle,
+.hero .hero-cta{margin-left: var(--hero-offset-x);max-width: min(720px, 95%)}
+
+/* Sur mobile on réduit un peu le décalage */
+@media (max-width: 700px){
+  :root{ --hero-offset-x: 18px; }}
 
     .display {
       font-family: var(--ff-head); font-weight:900; line-height: .95; letter-spacing:.3px;
       font-size: clamp(48px, 8vw, 112px); text-transform: uppercase;
       color: var(--accent); position: relative;
-      text-shadow: 0.18em 0.18em 0 var(--ink); /* effet ombre portée épaisse */
+      text-shadow: 0.18em 0.18em 0 #0f172a; /* ombre épaisse bleutée */
     }
     .subtitle { font-size: clamp(22px, 3vw, 44px); color: var(--ink); opacity:.9; margin-top: 18px; }
 
     .hero-cta { margin-top: 28px; display:flex; gap:14px; flex-wrap: wrap; }
-    .btn {
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:14px 22px; font-weight:800; border-radius: 14px; cursor:pointer;
-      transition:.2s transform ease, .2s box-shadow ease; border:2px solid transparent;
-    }
-    .btn-primary { background: var(--ink); color: var(--white); box-shadow: var(--shadow-2); }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:14px 22px; font-weight:800; border-radius: 14px; cursor:pointer; transition:.2s transform ease, .2s box-shadow ease; border:2px solid transparent; }
+    .btn-primary { background: var(--accent); color: var(--white); box-shadow: var(--shadow-2); }
     .btn-primary:hover { transform: translateY(-2px); }
     .btn-ghost { background: transparent; border-color: var(--ink); color: var(--ink); }
 
-    /* ====== Texte intro ====== */
+    /* =================== INTRO =================== */
     .intro { padding: 30px 0 10px; }
     .intro .card { background: var(--paper); padding: 30px; border-radius: var(--radius-xl); box-shadow: var(--shadow-1); }
     .intro p { margin:0 0 12px; color:#223f5a; font-size: clamp(16px, 2vw, 18px); }
 
-    /* ====== Tabs Menu ====== */
+    /* =================== TABS MENU =================== */
     .tabs { margin-top: 40px; border-top:1px solid var(--border); border-bottom:1px solid var(--border); overflow:auto; }
     .tablist { display:flex; gap:28px; padding:22px 6px; min-width: max-content; }
-    .tablist button {
-      appearance:none; background:#0000; border:0; font-weight:800; font-family: var(--ff-head); font-size: clamp(16px, 2.4vw, 22px);
-      color: var(--ink); padding:12px 18px; border-radius: 12px; cursor:pointer; opacity:.85;
-    }
-    .tablist button[aria-selected="true"] { background: var(--accent); color: var(--white); box-shadow: 0 8px 18px rgba(232,107,102,.25); opacity:1; }
+    .tablist button { appearance:none; background:#0000; border:0; font-weight:800; font-family: var(--ff-head); font-size: clamp(16px, 2.4vw, 22px); color: var(--ink); padding:12px 18px; border-radius: 12px; cursor:pointer; opacity:.85; }
+    .tablist button[aria-selected="true"] { background: var(--accent); color: var(--white); box-shadow: 0 8px 18px rgba(30,64,175,.25); opacity:1; }
 
-    /* ====== Liste pizzas ====== */
+    /* =================== LISTE PIZZAS =================== */
     .menu-section { padding: 18px 0 10px; }
     .grid { display:grid; grid-template-columns: 1fr; gap: 28px; }
     @media (min-width: 860px) { .grid { grid-template-columns: 1fr 1fr; } }
-
     .item { padding: 18px 0; border-bottom:1px dashed #d9d5cc; }
     .item h4 { margin:0 0 6px; font-family: var(--ff-head); font-weight:800; letter-spacing:.2px; }
     .item .price { font-weight:800; color: var(--accent-2); float:right; margin-left: 10px; }
@@ -157,80 +166,72 @@
     /* CTA entre sections */
     .block-cta { display:flex; justify-content:center; padding: 36px 0 20px; }
 
-    /* ====== Contact ====== */
+    /* =================== CONTACT =================== */
     #contact { padding: 70px 0; }
     .contact-wrap { display:grid; gap: 30px; grid-template-columns: 1fr; }
     @media (min-width: 980px) { .contact-wrap { grid-template-columns: 1.1fr .9fr; align-items: start; } }
-
     .form-card, .story-card { background: var(--paper); border-radius: var(--radius-xl); padding: 26px; box-shadow: var(--shadow-1); }
     .form-row { display:grid; grid-template-columns: 1fr; gap:12px; }
     @media (min-width: 640px) { .form-row.two { grid-template-columns: 1fr 1fr; } }
     label { font-weight:600; font-size: 14px; }
     input, textarea { width: 100%; padding: 12px 14px; border-radius: 12px; border:1px solid var(--border); outline:none; background: #fff; font-family: var(--ff-body); }
     textarea { min-height: 140px; resize: vertical; }
-
     .policy { font-size: 14px; color: var(--muted); display:flex; gap:10px; align-items: flex-start; }
 
-    /* ====== Footer ====== */
+    /* =================== FOOTER =================== */
     footer { padding: 48px 0 110px; color: var(--ink); }
-.footer-head { text-align:center; margin-bottom: 20px; }
-.footer-head .logo { height: 44px; }
-.footer-head .slogan { font-family: var(--ff-head); letter-spacing: 3px; font-weight:600; color: var(--muted); text-transform: uppercase; }
-.footer-top { display:grid; grid-template-columns: 1fr; gap: 28px; justify-items:center; text-align:center; padding: 14px 0 22px; }
-@media (min-width: 900px){ .footer-top { grid-template-columns: 1fr 1fr 1fr; } }
-.footer-top .info { display:flex; flex-direction:column; align-items:center; gap: 10px; }
-.footer-top .ico { font-size: 30px; line-height: 1; background: var(--paper); width: 56px; height:56px; border-radius: 999px; display:grid; place-items:center; box-shadow: var(--shadow-1); color: var(--ink); }
-.footer-top .label { font-weight:800; letter-spacing: .5px; }
-.foot-sep { border: 0; border-top:1px solid var(--border); margin: 26px 0; }
-.footer-bottom { display:flex; align-items:center; justify-content:space-between; gap: 12px; flex-wrap:wrap; color: var(--muted); font-size:14px; }
-.socials { display:flex; align-items:center; gap: 12px; }
-.socials a { width: 38px; height: 38px; border-radius: 999px; display:grid; place-items:center; background: var(--ink); color:#fff; font-weight: 900; text-decoration:none; }
-.socials a:hover { transform: translateY(-1px); }
+    .footer-head { text-align:center; margin-bottom: 20px; }
+    .footer-head .logo { height: 44px; }
+    .footer-head .slogan { font-family: var(--ff-head); letter-spacing: 3px; font-weight:600; color: var(--muted); text-transform: uppercase; }
+    .footer-top { display:grid; grid-template-columns: 1fr; gap: 28px; justify-items:center; text-align:center; padding: 14px 0 22px; }
+    @media (min-width: 900px){ .footer-top { grid-template-columns: 1fr 1fr 1fr; } }
+    .footer-top .info { display:flex; flex-direction:column; align-items:center; gap: 10px; }
+    .footer-top .ico { font-size: 30px; line-height: 1; background: var(--paper); width: 56px; height:56px; border-radius: 999px; display:grid; place-items:center; box-shadow: var(--shadow-1); color: var(--ink); }
+    .footer-top .label { font-weight:800; letter-spacing: .5px; }
+    .foot-sep { border: 0; border-top:1px solid var(--border); margin: 26px 0; }
+    .footer-bottom { display:flex; align-items:center; justify-content:space-between; gap: 12px; flex-wrap:wrap; color: var(--muted); font-size:14px; }
+    .socials { display:flex; align-items:center; gap: 12px; }
+    .socials a { width: 38px; height: 38px; border-radius: 999px; display:grid; place-items:center; background: var(--accent); color:#fff; font-weight: 900; text-decoration:none; transition: transform .15s ease; }
+    .socials a:hover { transform: translateY(-1px); }
 
-    /* ====== Bouton téléphone flottant (UberEats supprimé volontairement) ====== */
+    /* =================== FAB CALL =================== */
     .fab-call {
       position: fixed; right: calc(18px + env(safe-area-inset-right)); bottom: calc(18px + env(safe-area-inset-bottom)); z-index: 60;
       width: 60px; height: 60px; border-radius: 999px; display:grid; place-items:center;
-      background: var(--accent); color:#fff; box-shadow: 0 14px 28px rgba(232,107,102,.35);
+      background: var(--accent); color:#fff; box-shadow: 0 14px 28px rgba(30,64,175,.35);
       font-weight: 900; font-size: 22px; line-height: 1; text-decoration: none;
     }
     .fab-call:hover { transform: translateY(-2px); }
-
-    /* ====== Utilitaires ====== */
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
   </style>
 </head>
 <body>
   <!-- =================== HEADER =================== -->
-  <header class="container">
-    <div class="nav-wrap">
+  <header class="container" id="header">
+    <div class="nav-wrap" role="navigation" aria-label="Navigation principale">
       <a class="brand" href="#top" aria-label="Accueil">
-        <!-- Remplacez src par votre logo -->
-        <img src="photomenu/lasolina_fondclair.png" alt="Logo Pizzeria" onerror="this.style.display='none'">
+        <!-- Le logo s'adapte automatiquement à la hauteur de la barre -->
+        <img src="photomenu/lasolina_fondclair.png" alt="Logo Pizzeria" onerror="this.style.display='none'" loading="eager" fetchpriority="high">
         <span>PIZZERIA ARTISANALE</span>
       </a>
 
       <nav class="desktop-nav">
         <a href="#top" class="active">Accueil</a>
-        <a href="#apropos">A propos</a>
+        <a href="#apropos">À propos</a>
         <a href="#menu">Menu</a>
         <a href="#contact">Contact</a>
       </nav>
 
-      <!-- Bouton burger pour mobile -->
-      <button class="burger" id="burger" aria-label="Ouvrir le menu"><span></span></button>
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
 
       <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu">
         <a href="#top">Accueil</a>
-        <a href="#apropos">A propos</a>
+        <a href="#apropos">À propos</a>
         <a href="#menu">Menu</a>
         <a href="#contact">Contact</a>
       </div>
-
-      <!-- Bouton UberEats supprimé selon votre demande -->
-      <!-- <div class="cta-platforms"><span class="pill">UberEats</span></div> -->
     </div>
   </header>
+  <div class="backdrop" id="backdrop" hidden></div>
 
   <!-- =================== HERO =================== -->
   <section class="hero container bg-bleed" id="top" style="--bg-img: url('photomenu/DSC00823.jpg'); --bg-opacity:.22;">
@@ -242,7 +243,7 @@
     </div>
   </section>
 
-  <!-- =================== INTRO TEXTE =================== -->
+  <!-- =================== INTRO =================== -->
   <section class="intro container" id="apropos">
     <div class="card">
       <h2 style="font-family:var(--ff-head); font-weight:800; letter-spacing:.3px;">Une pizza chez… ?</h2>
@@ -256,12 +257,10 @@
   <!-- =================== MENU (onglets) =================== -->
   <section class="container" id="menu">
     <div class="tabs">
-      <div class="tablist" id="tablist" role="tablist" aria-label="Catégories du menu"><!-- onglets injectés par JS --></div>
+      <div class="tablist" id="tablist" role="tablist" aria-label="Catégories du menu"><!-- injecté par JS --></div>
     </div>
 
-    <div id="menuContent" class="menu-section">
-      <!-- contenu rendu par JS -->
-    </div>
+    <div id="menuContent" class="menu-section"><!-- rendu par JS --></div>
 
     <div class="block-cta">
       <a class="btn" style="background:var(--accent); color:#fff;" href="#contact">Commander</a>
@@ -297,6 +296,7 @@
     </div>
   </section>
 
+  <!-- =================== FOOTER =================== -->
   <footer class="container">
     <div class="footer-head">
       <img src="lasolina_fondclair.png" alt="Logo Pizzeria" class="logo" onerror="this.style.display='none'">
@@ -333,12 +333,12 @@
     </div>
   </footer>
 
-  <!-- Bouton téléphone flottant (modifiez le numéro dans CONFIG ci-dessous) -->
+  <!-- ===== Bouton téléphone flottant ===== -->
   <a class="fab-call" id="fabCall" href="tel:+33000000000" aria-label="Appeler">☎</a>
 
   <!-- =================== SCRIPTS =================== -->
   <script>
-    // ===== CONFIG GLOBALE (MODIFIEZ ICI) =====
+    // =================== CONFIG GLOBALE ===================
     const CONFIG = {
       business: {
         hours: "7j/7 de 18h à 22h",
@@ -346,11 +346,8 @@
         socials: { facebook: "#", instagram: "#" },
         legal: { mentions: "#", privacy: "#" }
       },
-      phone: "+33500000000",   // <— MODIFIEZ le numéro pour le bouton d'appel et le CTA Commander
-      commanderTarget: "#contact", // ancre par défaut du bouton Commander
-
-      // === MENU : modifiez/ajoutez vos catégories et pizzas ici ===
-      // Astuce : titres, prix et ingrédients sont intégralement éditables.
+      phone: "+33500000000", // <— MODIFIEZ le numéro
+      commanderTarget: "#contact",
       menu: {
         "Basiques": [
           { name: "La Fromage", price: 7.70, desc: "Sauce tomate, olives, mozzarella, emmental fondu. 33 cm.", note: "6,60€ en 29 cm" },
@@ -383,29 +380,82 @@
       }
     };
 
-    // ===== UTILITAIRES =====
+    // =============== UTILITAIRES ===============
     const euro = n => (n).toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "€";
+    const $ = sel => document.querySelector(sel);
 
+    // =============== NAVIGATION ACTIVE + OFFSET STICKY ===============
     const tablist = document.getElementById('tablist');
     const menuContent = document.getElementById('menuContent');
 
-    function renderTabs() {
-      const cats = Object.keys(CONFIG.menu);
-      tablist.innerHTML = cats.map((c, i) => `
-        <button role="tab" aria-selected="${i===0}" aria-controls="panel-${i}" id="tab-${i}" data-index="${i}">${c}</button>
-      `).join('');
-      tablist.addEventListener('click', (e) => {
-        if(e.target.matches('button[role="tab"]')) {
-          const i = Number(e.target.dataset.index);
-          selectTab(i);
+    // Scroll avec compensation robuste (y compris si la hauteur de nav change)
+    function getNavOffset(){
+      const wrap = document.querySelector('.nav-wrap');
+      if(!wrap) return 0;
+      const styles = getComputedStyle(wrap);
+      return wrap.getBoundingClientRect().height + parseInt(styles.marginBottom || '0') + 8; // 8px de marge visuelle
+    }
+    function smoothScrollTo(id){
+      const el = document.querySelector(id);
+      if(!el) return;
+      const y = el.getBoundingClientRect().top + window.scrollY - getNavOffset();
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+
+    // Activation liens (desktop + mobile)
+    const navLinks = [...document.querySelectorAll('.desktop-nav a'), ...document.querySelectorAll('#mobileMenu a')];
+    function setActive(hash){ navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === hash)); }
+
+    // Gestion des clics d'ancrage
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        if (id && id.length > 1 && document.querySelector(id)) {
+          e.preventDefault();
+          history.pushState(null, '', id);
+          smoothScrollTo(id);
+          setActive(id);
+          closeMobileMenu();
         }
+      });
+    });
+
+    // Mise à jour active au scroll via IntersectionObserver
+    const sections = ['#top','#apropos','#menu','#contact'].map(s => document.querySelector(s)).filter(Boolean);
+    const io = new IntersectionObserver((entries) => {
+      let topMost = entries
+        .filter(en => en.isIntersecting)
+        .sort((a,b)=> a.boundingClientRect.top - b.boundingClientRect.top)[0];
+      if(topMost){ setActive('#' + topMost.target.id); }
+    }, { rootMargin: `-${getNavOffset()}px 0px -60% 0px`, threshold: 0.01 });
+    sections.forEach(sec => io.observe(sec));
+
+    // =============== TABS (clavier + a11y) ===============
+    function renderTabs(){
+      const cats = Object.keys(CONFIG.menu);
+      tablist.innerHTML = cats.map((c,i)=>`<button role="tab" aria-selected="${i===0}" aria-controls="panel-${i}" id="tab-${i}" data-index="${i}">${c}</button>`).join('');
+      tablist.addEventListener('click', e => {
+        const btn = e.target.closest('button[role="tab"]');
+        if(!btn) return; selectTab(Number(btn.dataset.index));
+      });
+      // Navigation clavier
+      tablist.addEventListener('keydown', e => {
+        const tabs = [...tablist.querySelectorAll('button[role="tab"]')];
+        const current = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
+        let next = current;
+        if(e.key === 'ArrowRight') next = (current + 1) % tabs.length;
+        else if(e.key === 'ArrowLeft') next = (current - 1 + tabs.length) % tabs.length;
+        else if(e.key === 'Home') next = 0;
+        else if(e.key === 'End') next = tabs.length - 1;
+        else return;
+        e.preventDefault(); selectTab(next); tabs[next].focus();
       });
     }
 
-    function renderPanel(index) {
+    function renderPanel(index){
       const cats = Object.keys(CONFIG.menu);
       const cat = cats[index];
-      const items = CONFIG.menu[cat];
+      const items = CONFIG.menu[cat] || [];
       const html = `
         <div id="panel-${index}" role="tabpanel" aria-labelledby="tab-${index}">
           <div class="grid">
@@ -421,80 +471,66 @@
       menuContent.innerHTML = html;
     }
 
-    function selectTab(index) {
-      for (const b of tablist.querySelectorAll('button')) b.setAttribute('aria-selected', 'false');
-      tablist.querySelector(`[data-index="${index}"]`).setAttribute('aria-selected', 'true');
+    function selectTab(index){
+      tablist.querySelectorAll('button').forEach(b => b.setAttribute('aria-selected','false'));
+      const active = tablist.querySelector(`[data-index="${index}"]`);
+      if(active) active.setAttribute('aria-selected','true');
       renderPanel(index);
     }
 
-    // ===== Navigation active au scroll =====
-    const navLinks = [...document.querySelectorAll('.desktop-nav a'), ...document.querySelectorAll('#mobileMenu a')];
-    function setActive(hash) {
-      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === hash));
-    }
-    window.addEventListener('hashchange', () => {
-      setActive(location.hash||'#top');
-      mobileMenu.style.display = 'none';
-    });
-
-    // ===== Smooth scroll with sticky offset =====
-    function smoothScrollTo(id){
-      const el = document.querySelector(id);
-      if(!el) return;
-      const navH = document.querySelector('.nav-wrap').getBoundingClientRect().height + 20; // marge de respiration
-      const y = el.getBoundingClientRect().top + window.scrollY - navH;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', (e) => {
-        const id = a.getAttribute('href');
-        if (!id || id === '#') return; // garde les faux liens
-        if (id.length > 1 && document.querySelector(id)) {
-          e.preventDefault();
-          history.pushState(null, '', id);
-          smoothScrollTo(id);
-          setActive(id);
-          mobileMenu.style.display = 'none';
-        }
-      });
-    });
-
-    // ===== Burger mobile =====
+    // =============== BURGER / MENU MOBILE (solide) ===============
     const burger = document.getElementById('burger');
     const mobileMenu = document.getElementById('mobileMenu');
-    burger.addEventListener('click', () => {
-      mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
-    });
-    mobileMenu.addEventListener('click', () => mobileMenu.style.display = 'none');
-    window.addEventListener('resize', () => { if (window.innerWidth > 900) mobileMenu.style.display = 'none'; });
+    const backdrop = document.getElementById('backdrop');
 
-    // ===== Commander + bouton téléphone =====
-const fabCall = document.getElementById('fabCall');
-if (fabCall) fabCall.href = `tel:${CONFIG.phone}`;
-
-const commanderTop = document.getElementById('btnCommanderTop');
-if (commanderTop) commanderTop.href = CONFIG.commanderTarget;
-
-const commanderContact = document.getElementById('btnCommanderContact');
-if (commanderContact) commanderContact.href = `tel:${CONFIG.phone}`;
-
-
-    // ===== Footer bindings =====
-    const $ = (id) => document.getElementById(id);
-    const biz = CONFIG.business || {};
-    if ($('footHours')) $('footHours').textContent = biz.hours || '';
-    if ($('footCity')) $('footCity').textContent = biz.city || '';
-    if ($('footPhone')) {
-      const display = (CONFIG.phoneDisplay || '').trim();
-      $('footPhone').textContent = display || (CONFIG.phone || '').replace(/^\+33/, '0');
-      $('footPhone').href = `tel:${CONFIG.phone}`;
+    function openMobileMenu(){
+      document.body.classList.add('menu-open');
+      mobileMenu.style.display = 'block';
+      backdrop.style.display = 'block'; backdrop.hidden = false;
+      burger.setAttribute('aria-expanded','true');
+      // Focus premier lien
+      const first = mobileMenu.querySelector('a'); if(first) first.focus();
     }
-    if ($('fbLink')) $('fbLink').href = (biz.socials && biz.socials.facebook) || '#';
-    if ($('igLink')) $('igLink').href = (biz.socials && biz.socials.instagram) || '#';
-    if ($('mentionsLink')) $('mentionsLink').href = (biz.legal && biz.legal.mentions) || '#';
-    if ($('privacyLink')) $('privacyLink').href = (biz.legal && biz.legal.privacy) || '#';
+    function closeMobileMenu(){
+      document.body.classList.remove('menu-open');
+      mobileMenu.style.display = 'none';
+      backdrop.style.display = 'none'; backdrop.hidden = true;
+      burger.setAttribute('aria-expanded','false');
+    }
 
-    // ===== Init =====
+    burger.addEventListener('click', () => {
+      const isOpen = burger.getAttribute('aria-expanded') === 'true';
+      isOpen ? closeMobileMenu() : openMobileMenu();
+    });
+    mobileMenu.addEventListener('click', (e) => { if(e.target.tagName === 'A') closeMobileMenu(); });
+    backdrop.addEventListener('click', closeMobileMenu);
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMobileMenu(); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMobileMenu(); });
+
+    // =============== BOUTONS COMMANDER / APPEL ===============
+    const fabCall = document.getElementById('fabCall');
+    if (fabCall) fabCall.href = `tel:${CONFIG.phone}`;
+    const commanderTop = document.getElementById('btnCommanderTop');
+    if (commanderTop) commanderTop.href = CONFIG.commanderTarget;
+    const commanderContact = document.getElementById('btnCommanderContact');
+    if (commanderContact) commanderContact.href = `tel:${CONFIG.phone}`;
+
+    // =============== FOOTER BINDINGS ===============
+    const biz = CONFIG.business || {};
+    const byId = id => document.getElementById(id);
+    if (byId('footHours')) byId('footHours').textContent = biz.hours || '';
+    if (byId('footCity')) byId('footCity').textContent = biz.city || '';
+    if (byId('footPhone')) {
+      const display = (CONFIG.phoneDisplay || '').trim();
+      byId('footPhone').textContent = display || (CONFIG.phone || '').replace(/^\+33/, '0');
+      byId('footPhone').href = `tel:${CONFIG.phone}`;
+    }
+    if (byId('fbLink')) byId('fbLink').href = (biz.socials && biz.socials.facebook) || '#';
+    if (byId('igLink')) byId('igLink').href = (biz.socials && biz.socials.instagram) || '#';
+    if (byId('mentionsLink')) byId('mentionsLink').href = (biz.legal && biz.legal.mentions) || '#';
+    if (byId('privacyLink')) byId('privacyLink').href = (biz.legal && biz.legal.privacy) || '#';
+
+    // =============== INIT ===============
     renderTabs();
     selectTab(0);
     setActive('#top');

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ================= FAVICONS & APP META =================
+       Place tes icônes dans images/ (ou adapte le chemin).
+       Minimum conseillé : favicon.ico, favicon-32x32.png, apple-touch-icon.png, site.webmanifest. -->
+  <link rel="icon" href="images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="manifest" href="images/site.webmanifest">
+  <meta name="theme-color" content="#475569">
+  <meta name="application-name" content="modele-multipage">
+
+  <title>(Titre/nom du site) — Mentions légales</title>
+
+  <style>
+    :root{
+      /* === PALETTE (neutre gris/bleu) === */
+      --brand:#475569;  /* Slate */
+      --bg:#ffffff;     /* Fond */
+      --text:#111111;   /* Texte */
+      --accent:#475569; /* Boutons */
+
+      /* Typo */
+      --font-display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue","Segoe UI",Roboto,Inter,Arial,sans-serif;
+      --font-text:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue","Segoe UI",Roboto,Inter,Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-text);overflow-x:hidden}
+
+    /* ===== Header / Nav (commun au site) ===== */
+    .site-header{position:fixed;inset:0 0 auto 0;height:64px;background:var(--brand);z-index:50}
+    .site-header .wrap{width:min(1200px,96%);margin:0 auto;height:100%;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:block}
+    .brand-logo{height:36px;display:block}
+    .desktop-nav{display:none;gap:6px}
+    .desktop-nav a{color:#fff;text-decoration:none;font-weight:700;padding:8px 12px;border-radius:999px}
+    .desktop-nav a:hover{background:rgba(255,255,255,.12)}
+    .desktop-nav a.active{background:rgba(255,255,255,.16)}
+    .burger{position:relative;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:2px solid rgba(255,255,255,.55);border-radius:12px;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+    .burger .bar{position:relative;display:block;width:24px;height:3px;background:#fff;border-radius:2px}
+    .burger .bar::before,.burger .bar::after{content:"";position:absolute;left:50%;top:50%;width:24px;height:3px;background:#fff;border-radius:2px;transform:translate(-50%,-50%)}
+    .burger .bar::before{transform:translate(-50%,-50%) translateY(-7px)}
+    .burger .bar::after{transform:translate(-50%,-50%) translateY(7px)}
+    body.menu-open .burger .bar{background:transparent}
+    body.menu-open .burger .bar::before{transform:translate(-50%,-50%) rotate(45deg)}
+    body.menu-open .burger .bar::after{transform:translate(-50%,-50%) rotate(-45deg)}
+    .burger:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+    .mobile-menu{position:fixed;top:0;right:0;bottom:0;width:84%;max-width:320px;background:var(--brand);box-shadow:-16px 0 40px rgba(0,0,0,.18);padding:20px;transform:translateX(100%);transition:transform .28s ease;z-index:60;display:flex;flex-direction:column;gap:8px}
+    .mobile-menu a{padding:14px 8px;border-radius:10px;text-decoration:none;color:#fff;font-weight:700}
+    .mobile-menu a:hover{background:rgba(255,255,255,.12)}
+    .backdrop{position:fixed;inset:0;background:rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:opacity .28s ease;z-index:55}
+    body.menu-open .mobile-menu{transform:translateX(0)}
+    body.menu-open .backdrop{opacity:1;pointer-events:auto}
+    body.menu-open{overflow:hidden}
+
+    @media (min-width:900px){
+      .desktop-nav{display:flex}
+      .burger{display:none}
+      .mobile-menu,.backdrop{display:none}
+    }
+
+    main{display:block;padding-top:64px}
+
+    /* ===== Hero simple ===== */
+    .hero-small{background:linear-gradient(transparent 55%, rgba(0,0,0,.35) 100%),url('images/hero-legal.jpg') center/cover no-repeat;min-height:240px;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;position:relative}
+    .hero-small::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45)}
+    .hero-small h1{position:relative;z-index:1;margin:0;font-family:var(--font-display);font-size:clamp(28px,4.5vw,44px)}
+
+    /* ===== Contenu mentions ===== */
+    .section{padding:24px 16px}
+    .wrap{width:min(1100px,96%);margin:0 auto}
+    .legal-block{background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;padding:16px 18px;margin:14px 0;text-align:left}
+    .legal-block h2{margin:0 0 10px;font-size:22px;color:var(--brand);font-family:var(--font-display)}
+    .legal-block p{margin:6px 0 10px;line-height:1.7}
+    .legal-list{list-style:none;padding:0;margin:0}
+    .legal-list li{padding:6px 0;border-top:1px dashed #e5e7eb}
+    .legal-list li:first-child{border-top:0}
+    .note{font-size:14px;color:#475569}
+    .muted{color:#334155}
+
+    /* ===== Footer ===== */
+    footer.section{background:#f8fafc}
+    .footer-flex{display:flex;flex-direction:column;align-items:center;gap:10px}
+  </style>
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <!-- SLOT: Logo du site -->
+        <img class="brand-logo" src="images/logo.png" alt="(Logo du site)">
+      </a>
+      <nav class="desktop-nav" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="equipe.html">Équipe</a>
+        <a href="avis.html">Avis</a>
+        <a href="planning.html">Planning</a>
+        <a href="salle.html">Salle</a>
+        <a href="tarifs.html">Tarifs</a>
+      </nav>
+      <button id="menuBtn" class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu"><span class="bar" aria-hidden="true"></span></button>
+    </div>
+  </header>
+
+  <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <a href="index.html">Accueil</a>
+    <a href="equipe.html">Équipe</a>
+    <a href="avis.html">Avis</a>
+    <a href="planning.html">Planning</a>
+    <a href="salle.html">Salle</a>
+    <a href="tarifs.html">Tarifs</a>
+  </nav>
+  <div id="backdrop" class="backdrop" hidden></div>
+
+  <main>
+    <section class="hero-small">
+      <h1>Mentions légales</h1>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+
+        <!-- ===================== 1) ÉDITEUR DU SITE ===================== -->
+        <article class="legal-block" id="editeur">
+          <h2>1. Éditeur du site</h2>
+          <ul class="legal-list">
+            <li><strong>Raison sociale / Nom légal :</strong> (Raison sociale ou Nom & Prénom si personne physique)</li>
+            <li><strong>Forme juridique :</strong> (Ex. SAS / SARL / EI / Micro-entreprise / Association loi 1901)</li>
+            <li><strong>Capital social :</strong> (Montant en € — si société)</li>
+            <li><strong>Siège social :</strong> (Adresse complète)</li>
+            <li><strong>SIREN / SIRET :</strong> (XXXXXXXXX / XXXXXXXXXXXXX)</li>
+            <li><strong>RCS :</strong> (Ville d’immatriculation) — <strong>N° TVA intracom :</strong> (FR..)</li>
+            <li><strong>Contact :</strong> (Téléphone) — (E‑mail de contact)</li>
+            <li><strong>Directeur·rice de la publication :</strong> (Nom & fonction)</li>
+            <li class="note">Cas particuliers :
+              <br>• <em>Association</em> → indiquer le <strong>n° RNA</strong>.
+              <br>• <em>Profession réglementée</em> → voir §3.
+            </li>
+          </ul>
+        </article>
+
+        <!-- ===================== 2) HÉBERGEUR ===================== -->
+        <article class="legal-block" id="hebergeur">
+          <h2>2. Hébergeur</h2>
+          <ul class="legal-list">
+            <li><strong>Dénomination :</strong> (Nom de l’hébergeur)</li>
+            <li><strong>Adresse :</strong> (Adresse complète)</li>
+            <li><strong>Téléphone :</strong> (N° de l’hébergeur)</li>
+            <li><strong>Site web :</strong> (URL)</li>
+          </ul>
+        </article>
+
+        <!-- ===================== 3) ACTIVITÉ & RÈGLEMENTATION ===================== -->
+        <article class="legal-block" id="reglementation">
+          <h2>3. Activité & réglementation (le cas échéant)</h2>
+          <p class="muted">Section à compléter si l’activité est réglementée (ex. santé, droit, immobilier, artisanat…).</p>
+          <ul class="legal-list">
+            <li><strong>Titre professionnel :</strong> (Intitulé exact) — <strong>Pays de délivrance :</strong> (État)</li>
+            <li><strong>Organisation professionnelle / Ordre :</strong> (Nom de l’ordre ou organisme d’inscription) — (N° d’inscription)</li>
+            <li><strong>Règles professionnelles applicables :</strong> (Lien ou référence)</li>
+            <li><strong>Assurance RCP :</strong> (Assureur, n° de police, couverture géographique)</li>
+          </ul>
+        </article>
+
+        <!-- ===================== 4) MÉDIATION DE LA CONSOMMATION ===================== -->
+        <article class="legal-block" id="mediation">
+          <h2>4. Médiation de la consommation</h2>
+          <ul class="legal-list">
+            <li><strong>Médiateur désigné :</strong> (Nom de l’organisme de médiation)</li>
+            <li><strong>Coordonnées :</strong> (Adresse / Site web / E‑mail)</li>
+            <li><strong>Modalités :</strong> (Prérequis réclamation écrite, délais…)</li>
+          </ul>
+          <p>Plateforme européenne de règlement en ligne des litiges (RLL) : <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>.</p>
+        </article>
+
+        <!-- ===================== 5) PROPRIÉTÉ INTELLECTUELLE ===================== -->
+        <article class="legal-block" id="propriete">
+          <h2>5. Propriété intellectuelle</h2>
+          <p>Le site et l’ensemble de ses contenus (textes, images, illustrations, logos, marques, fichiers, bases de données, structure) sont la propriété de <strong>(Nom du titulaire des droits)</strong> ou font l’objet d’autorisations d’utilisation. Toute reproduction, représentation, modification, adaptation, redistribution, traduction, intégrale ou partielle, par quelque procédé que ce soit, est interdite sans l’autorisation écrite préalable de <strong>(Nom)</strong>.</p>
+          <p>Crédits photos / illustrations : (Auteur·trice / Banque d’images / Client). Polices / icônes : (Noms & licences).</p>
+        </article>
+
+        <!-- ===================== 6) DONNÉES PERSONNELLES (RGPD) ===================== -->
+        <article class="legal-block" id="donnees">
+          <h2>6. Données personnelles (RGPD)</h2>
+          <ul class="legal-list">
+            <li><strong>Responsable de traitement :</strong> (Nom de l’éditeur) — (Coordonnées)</li>
+            <li><strong>Finalités :</strong> (Gestion des demandes via formulaires / commandes / relation client / facturation / prospection / statistiques de fréquentation…)</li>
+            <li><strong>Bases légales :</strong> (Exécution d’un contrat / Intérêt légitime / Consentement / Obligation légale – à préciser par finalité)</li>
+            <li><strong>Destinataires :</strong> (Prestataires habilités : hébergeur, e‑mailing, mesure d’audience, paiement…)</li>
+            <li><strong>Durées de conservation :</strong> (Ex. Prospects : (XX) mois — Clients : (XX) ans — Facturation : (10) ans)</li>
+            <li><strong>Exercice des droits :</strong> accès, rectification, effacement, opposition, limitation, portabilité. Contact : (E‑mail dédié RGPD).</li>
+            <li><strong>DPO (si nommé) :</strong> (Nom / coordonnées)</li>
+            <li><strong>Réclamation :</strong> droit d’introduire une réclamation auprès de la CNIL : <a href="https://www.cnil.fr" target="_blank" rel="noopener">cnil.fr</a></li>
+            <li><strong>Transferts hors UE :</strong> (Oui/Non — garanties mises en place si oui)</li>
+          </ul>
+        </article>
+
+        <!-- ===================== 7) COOKIES & TRACEURS ===================== -->
+        <article class="legal-block" id="cookies">
+          <h2>7. Cookies & traceurs</h2>
+          <p>Lors de la navigation, des traceurs peuvent être déposés sur votre terminal pour des finalités techniques (nécessaires au fonctionnement du site), de mesure d’audience (ex. (Nom de l’outil d’analyse)), ou de personnalisation. Vous pouvez à tout moment <a href="#" onclick="alert('Ouvrir le panneau de préférences – à brancher sur votre CMP/cookie banner'); return false;">gérer vos préférences cookies</a>.</p>
+          <ul class="legal-list">
+            <li><strong>Cookies nécessaires :</strong> (finalités / durée)</li>
+            <li><strong>Mesure d’audience :</strong> (outil, fournisseur, durée, anonymisation IP ?)</li>
+            <li><strong>Publicité / tiers :</strong> (si applicable)</li>
+          </ul>
+        </article>
+
+        <!-- ===================== 8) LIENS EXTERNES & RESPONSABILITÉ ===================== -->
+        <article class="legal-block" id="liens">
+          <h2>8. Liens externes & responsabilité</h2>
+          <p>Des liens sortants vers des sites tiers peuvent être proposés. <strong>(Nom de l’éditeur)</strong> ne peut être tenu responsable de leur contenu ni de leurs pratiques. Malgré le soin apporté à l’édition, les informations du présent site sont fournies à titre indicatif et peuvent contenir des erreurs ou omissions.</p>
+        </article>
+
+        <!-- ===================== 9) CONTACT ===================== -->
+        <article class="legal-block" id="contact">
+          <h2>9. Contact</h2>
+          <p>Pour toute question concernant le site ou son contenu : (E‑mail de contact) — (Téléphone) — (Adresse postale).</p>
+        </article>
+
+        <!-- ===================== 10) MISE À JOUR ===================== -->
+        <article class="legal-block" id="maj">
+          <h2>10. Mise à jour</h2>
+          <p>Mentions légales mises à jour le : <strong>(JJ mois AAAA)</strong>.</p>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="section">
+    <div class="wrap footer-flex">
+      <div>© 2025 (Nom de l’entreprise) — (Adresse) — <a href="mentions.html" aria-current="page">Mentions légales</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // Menu mobile (même logique que les autres pages du modèle)
+    const body=document.body;const btn=document.getElementById('menuBtn');const menu=document.getElementById('mobileMenu');const backdrop=document.getElementById('backdrop');
+    const openMenu=()=>{body.classList.add('menu-open');btn.setAttribute('aria-expanded','true');btn.setAttribute('aria-label','Fermer le menu');menu.setAttribute('aria-hidden','false');backdrop.hidden=false};
+    const closeMenu=()=>{body.classList.remove('menu-open');btn.setAttribute('aria-expanded','false');btn.setAttribute('aria-label','Ouvrir le menu');menu.setAttribute('aria-hidden','true');backdrop.hidden=true};
+    btn.addEventListener('click',()=>{body.classList.contains('menu-open')?closeMenu():openMenu()});
+    backdrop.addEventListener('click',closeMenu);menu.addEventListener('click',e=>{if(e.target.tagName==='A') closeMenu()});document.addEventListener('keydown',e=>{if(e.key==='Escape') closeMenu()});
+  </script>
+</body>
+</html>
